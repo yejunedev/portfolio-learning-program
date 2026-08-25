@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <div id="portfolio">
+    <h1>포트폴리오 학습 프로그램</h1>
+    <h2>정예준</h2>
+    <p>웹 개발을 공부하고 있습니다.</p>
+
+    <h3>기술 스택</h3>
+    <p>HTML / CSS / JavaScript</p>
+
+    <h3>프로젝트</h3>
+    <p>포트폴리오 학습 프로그램</p>
+</div>
+
+    <button onclick="savePDF()">PDF 저장</button>
+    <script>
+        async function savePDF() {
+    const portfolio = document.getElementById("portfolio");
+    const canvas = await html2canvas(portfolio);
+    const imgData = canvas.toDataURL("image/png");
+    const { jsPDF } = window.jspdf;
+    const pdf = new jsPDF("p", "mm", "a4");
+    const width = 190;
+    const height = canvas.height * width / canvas.width;
+    pdf.addImage(imgData, "PNG", 10, 10, width, height);
+    pdf.save("portfolio.pdf");
+}
+    </script>
+</body>
+</html>
