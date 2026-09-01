@@ -1,0 +1,10 @@
+body {
+    background: #bcd3e4;
+}
+
+.background-circle {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
