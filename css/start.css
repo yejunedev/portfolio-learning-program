@@ -1,10 +1,16 @@
-body {
-    background: #bcd3e4;
+html,body{
+    margin: 0;
+    height: 100;
 }
 
-.background-circle {
-    position: absolute;
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
+
+#startimage{
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    display: block;
+}
+
+.container{
+    
 }
