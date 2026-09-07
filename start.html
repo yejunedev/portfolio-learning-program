@@ -1,17 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
 
-    <link rel="stylesheet" href="css/start.css">
+        body {
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
+        .hero-bg {
+
+            background:
+
+                radial-gradient(circle at 85% 8%, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.3) 12%, transparent 26%),
+
+                radial-gradient(circle at 95% 20%, rgba(150, 165, 255, 0.65) 0%, rgba(150, 165, 255, 0.35) 18%, transparent 34%),
+
+                radial-gradient(circle at 78% 5%, rgba(125, 145, 255, 0.6) 0%, rgba(125, 145, 255, 0.3) 16%, transparent 30%),
+
+                radial-gradient(circle at 92% 35%, rgba(135, 155, 255, 0.55) 0%, transparent 28%),
+
+                radial-gradient(circle at 8% 78%, rgba(156, 169, 251, 0.7) 0%, rgba(165, 177, 248, 0.35) 18%, transparent 34%),
+
+                radial-gradient(circle at 20% 92%, rgba(183, 192, 241, 0.65) 0%, rgba(150, 165, 255, 0.3) 16%, transparent 30%),
+
+                radial-gradient(circle at 2% 95%, rgba(197, 201, 229, 0.55) 0%, transparent 26%),
+
+                radial-gradient(circle at 15% 65%, rgba(135, 155, 255, 0.5) 0%, transparent 24%),
+
+                url('./img/시작배경1.svg') center / cover no-repeat,
+
+                linear-gradient(135deg, #eef1ff 0%, #f5f7ff 100%);
+
+
+            min-height: 100vh;
+            display: flex;
+            text-align: center;
+            align-items: center;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        .hero-bt {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .hero-content {
+            padding-top: 200px;
+            gap: 20px;
+
+        }
+
+        button {
+            background-color: #0088FF;
+            color: #FFFFFF;
+            border-radius: 25px;
+            border: none;
+            width: 400px;
+            height: 90px;
+            font-size: 22px;
+
+
+        }
+
+        #name {
+            font-weight: normal;
+            margin-bottom: 85px;
+            margin-top: 70px;
+            color: #4F4F4F;
+        }
+    </style>
 </head>
+
 <body>
-    <div class="container">
-        <h1>포트폴리오 학습 프로그램</h1>
-        <h2>정보를 입력하고 나만의 포트폴리오를 완성해보세요!</h2>
+    <div class="hero-bg">
+        <div class="hero-content">
+            <h1>포트폴리오 학습 프로그램</h1>
+            <h1 id="name">입력하고 나만의 포트폴리오를 완성해보세요!</h1>
+
+            <div class="hero-bt">
+                <button id="new">+ 새 포트폴리오 만들기</button>
+                <button id="vie">내 포트폴리오 보기</button>
+            </div>
+        </div>
     </div>
-    <img id ="startimage"  src="./img/시작배경.png" alt="시작화면 배경">
 </body>
+
 </html>
