@@ -12,5 +12,21 @@ html,body{
 }
 
 .container{
-    
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 100%; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+}
+.container h1{
+    font-size: 32px;
+}
+
+.container h2{  
+    font-weight: 100;
 }
