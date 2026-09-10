@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(180deg, #80AFFF 0%, #EBF1FF 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+
+        .page-title {
+            color: #ffffff;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .highlight-name {
+            color: #C9EDFF;
+        }
+
+
+        .container {
+            display: flex;
+            gap: 20px;
+            max-width: 1000px;
+            width: 100%;
+        }
+
+
+        .sidebar {
+            width: 300px;
+            background-color: #DBE8FF;
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 2px solid #8DABFF;
+            flex-shrink: 0;
+        }
+
+        .profile-img-container {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-bottom: 24px;
+            background-color: #ddd;
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-name {
+            font-size: 26px;
+            font-weight: 700;
+            color: #222;
+            margin-bottom: 6px;
+        }
+
+        .profile-job {
+            font-weight: 300;
+            font-size: 20px;
+            margin-bottom: 28px;
+        }
+
+        .contact-list {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+            color: #333;
+            text-decoration: none;
+            padding-left: 25px;
+        }
+
+        .contact-icon {
+            width: 22px;
+            height: 22px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+
+        .icon-email {
+            background-color: #4A90E2;
+            color: white;
+        }
+
+        .icon-github {
+            background-color: #333;
+            color: white;
+        }
+
+        .icon-instagram {
+            background-color: #E1306C;
+            color: white;
+        }
+
+        .contact-item span {
+            text-decoration: underline;
+            word-break: break-all;
+        }
+
+        
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+
+        .card {
+            background-color: #ffffff;
+            border-radius: 16px;
+            padding: 20px 24px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 18px;
+            font-weight: 700;
+            color: #222;
+            margin-bottom: 12px;
+        }
+
+
+        .intro-text {
+            font-size: 13px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+
+        .tech-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .tag-html {
+            background-color: #FFD2BD;
+            color: #D85D2A;
+        }
+
+        .tag-css {
+            background-color: #C3DBFF;
+            color: #357AE8;
+        }
+
+        .tag-js {
+            background-color: #FFF2B2;
+            color: #C29800;
+        }
+
+        .tag-github {
+            background-color: #D3D3D3;
+            color: #444444;
+        }
+
+
+        .project-grid {
+            display: flex;
+            gap: 16px;
+        }
+
+        .project-card {
+            flex: 1;
+            border: 1px solid #E2E8F0;
+            border-radius: 12px;
+            padding: 12px;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .project-thumbnail {
+            width: 70px;
+            height: 70px;
+            background-color: #D9D9D9;
+            border-radius: 8px;
+            flex-shrink: 0;
+        }
+
+        
+        .cert-grid {
+            display: flex;
+            gap: 12px;
+        }
+
+        .cert-item {
+            flex: 1;
+            border: 1px solid #E2E8F0;
+            border-radius: 12px;
+            padding: 12px 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .cert-icon {
+            width: 24px;
+            height: 24px;
+            background-color: #7FA7F3;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+        }
+
+
+        .footer-card {
+            background: linear-gradient(90deg, #5BA5FF 17%, #9CC9FF 50%, #5BA5FF 82%);
+            color: white;
+            border-radius: 16px;
+            padding: 24px;
+        }
+
+        .footer-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .footer-sub {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1 class="page-title">안녕하세요, <span class="highlight-name">김미림</span> 입니다</h1>
+
+    <div class="container">
+
+        <aside class="sidebar">
+            <div class="profile-img-container">
+                <img src="./img/김미림.svg" alt="김미림 프로필" class="profile-img">
+            </div>
+            <h2 class="profile-name">김미림</h2>
+            <p class="profile-job">풀스택 개발자</p>
+
+            <div class="contact-list">
+                <a href="mailto:kimirim@gmail.com" class="contact-item">
+                    <img src="./img/이메일.svg" alt="이메일" class="contact-icon">
+                    <span>kimirim@gmail.com</span>
+                </a>
+                <a href="https://github.com/gimmirimdev" class="contact-item" target="_blank">
+                    <img src="./img/깃허브.svg" alt="깃허브" class="contact-icon">
+                    <span>github.com/gimmirimdev</span>
+                </a>
+                <a href="#" class="contact-item">
+                    <img src="./img/인스타.svg" alt="인스타그램" class="contact-icon">
+                    <span>kimmirim12</span>
+                </a>
+            </div>
+        </aside>
+
+
+        <main class="main-content">
+        
+            <section class="card">
+                <div class="card-header">
+                    <span>👤</span> 소개
+                </div>
+                <p class="intro-text">
+                    새로운 기술을 배우고 문제를 해결하는 것을 좋아합니다.<br>
+
+                    사용자 경험을 생각하며 깔끔하고 유지보수가 좋은 코드를 작성하는 개발자가 되고 싶습니다.
+                </p>
+            </section>
+
+
+            <section class="card">
+                <div class="card-header">
+                    <span>⚡</span> 기술 스택
+                </div>
+                <div class="tech-tags">
+                    <span class="tag tag-html">HTML</span>
+                    <span class="tag tag-css">CSS</span>
+                    <span class="tag tag-js">JavaScript</span>
+                    <span class="tag tag-github">GitHub</span>
+                </div>
+            </section>
+
+            
+            <section class="card">
+                <div class="card-header">
+                    <span>💻</span> 프로젝트
+                </div>
+                <div class="project-grid">
+                    <div class="project-card">
+                        <div class="project-thumbnail"></div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-thumbnail"></div>
+                    </div>
+                </div>
+            </section>
+
+        
+            <section class="card">
+                <div class="card-header">
+                    <span>🎓</span> 자격증
+                </div>
+                <div class="cert-grid">
+                    <div class="cert-item">
+                        <div class="cert-icon">🏅</div>
+                        <span>정보처리기능사</span>
+                    </div>
+                    <div class="cert-item">
+                        <div class="cert-icon">🏅</div>
+                        <span>SQLD</span>
+                    </div>
+                    <div class="cert-item">
+                        <div class="cert-icon">🏅</div>
+                        <span>GTQ 1급</span>
+                    </div>
+                </div>
+            </section>
+
+            
+            <section class="footer-card">
+                <h3 class="footer-title">함께 성장할 수 있는 기회를 기다립니다!</h3>
+                <p class="footer-sub">언제든 편하게 연락해 주세요.</p>
+            </section>
+        </main>
+    </div>
+
+</body>
+
+</html>
