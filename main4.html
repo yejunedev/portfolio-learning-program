@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        background-color: #FFD5D5;
+    }
+
+    .result-bg {
+        margin-left: 10px;
+        padding-left: 40px;
+        padding-top: 30px;
+        max-width: 1200px;
+
+    }
+
+    .top-section {
+        gap: 15px;
+        margin-bottom: 30px;
+        display: flex;
+
+    }
+
+    .profile-card {
+        background-color: #FFE1E1;
+        border: 1px solid #D01010;
+        flex: 3.5;
+        border-radius: 20px;
+        padding: 25px 30px 20px 30px;
+
+    }
+
+    .profile-img {
+        width: 130px;
+        height: 130px;
+        border-radius: 70%;
+        object-fit: cover;
+        margin-bottom: 12px;
+
+    }
+
+    .project-card {
+        background-color: #FFE1E1;
+        border: 1px solid #D01010;
+        flex: 2.5;
+        border-radius: 20px;
+        padding: 25px 30px 20px 25px;
+
+
+    }
+
+    .name {
+        font-size: 30px;
+        font-weight: bold;
+        margin-bottom: 4px;
+        color: #585555;
+    }
+
+    .job {
+        font-size: 20px;
+        color: #4E4D4D;
+        margin-bottom: 12px;
+    }
+
+    .divider {
+        border: none;
+        border-top: 1px solid #000000;
+        margin-bottom: 12px;
+    }
+
+    .intro {
+        font-size: 27px;
+        color: #4E4D4D;
+    }
+
+    .section-title {
+        font-size: 25px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 12px;
+        letter-spacing: 0.5px;
+    }
+
+    .project-list {
+        list-style: none;
+        margin-bottom: 15px;
+    }
+
+    .project-list li {
+        font-size: 25px;
+        color: #333;
+        margin-bottom: 8px;
+        padding-left: 14px;
+        position: relative;
+    }
+
+    .project-list li::before {
+        content: "•";
+        position: absolute;
+        left: 0;
+    }
+
+    .tags {
+        display: flex;
+        gap: 10px;
+    }
+
+    .tag {
+        background: linear-gradient(135deg, #FFAFAF 0%, #FF8080 100%);
+        color: #4E4D4D;
+        padding: 10px 40px 10px 40px;
+        margin-top: 150px;
+        border-radius: 17px;
+        font-size: 20px;
+
+    }
+
+
+    .section {
+        margin-bottom: 20px;
+    }
+
+    .section .section-title {
+        color: #585555;
+        font-size: 25px;
+        margin-bottom: 12px;
+    }
+
+    .cert-tag {
+        display: block;
+        width: fit-content;
+        background: linear-gradient(135deg, #FFAFAF 0%, #FF8080 100%);
+        color: #4E4D4D;
+        padding: 10px 35px 10px 35px;
+        margin-top: 15px;
+        margin-right: 10px;
+        border-radius: 15px;
+        font-size: 20px;
+
+    }
+
+    .contact-list {
+        display: flex;
+        flex-direction: row;
+        gap: 80px;
+        align-items: center;
+        margin-top: 25px;
+    }
+
+
+    .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 20px;
+        color: #4E4D4D;
+    }
+
+
+    .contact-icon {
+        width: 28px;
+        height: 28px;
+        object-fit: contain;
+    }
+</style>
+
+<body>
+    <div class="result-bg">
+
+        <div class="top-section">
+
+
+            <div class="profile-card">
+                <img src="./img/김미림.svg" alt="프로필 사진" class="profile-img">
+                <h2 class="name">김미림</h2>
+                <p class="job">데이터 분석가</p>
+                <hr class="divider">
+                <p class="intro">숫자 뒤에 숨은 이야기를 찾는 데이터 분석가입니다. 작은 지표 하나가 의사결정을 바꾼다고 믿습니다.</p>
+            </div>
+
+            <div class="project-card">
+                <h3 class="section-title">PROJECT</h3>
+                <ul class="project-list">
+                    <li>이탈 예측 대시보드</li>
+                    <li>매출 트렌드 시각화</li>
+                </ul>
+                <div class="tags">
+                    <span class="tag">Python</span>
+                    <span class="tag">SQL</span>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="section">
+            <h3 class="section-title">자격증 및 활동</h3>
+            <span class="cert-tag">빅데이터분석기사</span>
+            <span class="cert-tag">ADsP</span>
+        </div>
+
+        <div class="contact-list">
+            <div class="contact-item">
+                <img src="./img/이메일.svg" alt="이메일" class="contact-icon">
+                <span>Kimirim@gmail.com</span>
+            </div>
+            <div class="contact-item">
+                <img src="./img/깃허브.svg" alt="깃허브" class="contact-icon">
+                <span>github.com/gimmirimdev</span>
+            </div>
+            <div class="contact-item">
+                <img src="./img/인스타.svg" alt="인스타그램" class="contact-icon">
+                <span>Kimmirim12</span>
+            </div>
+        </div>
+        <hr style="margin-top: 20px; margin-bottom: 12px; border: none; border-top: 1px solid #777;">
+
+    </div>
+</body>
+
+</html>
