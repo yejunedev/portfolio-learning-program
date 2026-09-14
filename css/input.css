@@ -1,0 +1,291 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #f1f5f9;
+  color: #334155;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 15px;
+}
+
+/* 전체 화면 감싸는 컨테이너 */
+.container {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+/* 상단 타이틀 영역 */
+.header {
+  margin-bottom: 24px;
+}
+
+.breadcrumb {
+  font-size: 13px;
+  color: #64748b;
+}
+
+.header h1 {
+  font-size: 26px;
+  color: #0f172a;
+  margin: 6px 0;
+}
+
+.header p {
+  color: #64748b;
+}
+
+/* 본문 2단 배치 (CSS Grid) */
+.grid-layout {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 24px;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* 흰색 박스 카드 */
+.card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.card-header h2 {
+  font-size: 18px;
+  color: #0f172a;
+}
+
+.badge {
+  background: #eff6ff;
+  color: #2563eb;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.text-gray {
+  color: #94a3b8;
+  font-size: 13px;
+}
+
+.guide-text {
+  font-size: 13px;
+  color: #64748b;
+  margin-bottom: 12px;
+}
+
+/* 폼 입력창 공통 */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.field label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #475569;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+  width: 100%;
+  height: 44px;
+  padding: 0 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 14px;
+  outline: none;
+}
+
+textarea {
+  height: 90px;
+  padding: 10px 12px;
+  resize: none;
+}
+
+input:focus,
+textarea:focus {
+  border-color: #3b82f6;
+}
+
+/* 가로 2칸, 3칸 정렬 */
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.row-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+}
+
+/* 프로필 사진 박스 레이아웃 */
+.profile-box {
+  display: flex;
+  gap: 20px;
+}
+
+.photo-area {
+  width: 140px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 14px;
+  text-align: center;
+}
+
+.circle-avatar {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: #e2e8f0;
+  margin: 0 auto 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+}
+
+.photo-label {
+  font-size: 12px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.photo-btns button {
+  padding: 4px 8px;
+  font-size: 11px;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.fields-area {
+  flex: 1;
+}
+
+/* 프로젝트 내부 회색 박스 */
+.sub-box {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.sub-box-title {
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+
+/* 추가 버튼(+ 버튼) */
+.btn-add {
+  background: #eff6ff;
+  border: 1px dashed #3b82f6;
+  color: #2563eb;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* 추천 기술 칩 버튼 */
+.chips {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  font-size: 13px;
+}
+
+.chips button {
+  background: #e2e8f0;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+/* 테마 선택 동그라미 버튼 */
+.color-palette {
+  display: flex;
+  gap: 12px;
+}
+
+.color-circle {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+}
+
+.color-circle.coral { background-color: #f87171; }
+.color-circle.amber { background-color: #facc15; }
+.color-circle.sky   { background-color: #38bdf8; }
+.color-circle.mint  { background-color: #4ade80; }
+.color-circle.custom {
+  background-color: #ffffff;
+  border: 1px dashed #94a3b8;
+  color: #64748b;
+  font-size: 18px;
+}
+
+/* 하단 고정 바 */
+.bottom-bar {
+  margin-top: 24px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 16px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.action-btns {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-save {
+  padding: 10px 18px;
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn-create {
+  padding: 10px 20px;
+  background: #1e3a8a;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
