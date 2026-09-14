@@ -11,14 +11,12 @@ body {
   font-size: 15px;
 }
 
-/* 전체 화면 감싸는 컨테이너 */
 .container {
   max-width: 1300px;
   margin: 0 auto;
   padding: 40px 20px;
 }
 
-/* 상단 타이틀 영역 */
 .header {
   margin-bottom: 24px;
 }
@@ -38,7 +36,6 @@ body {
   color: #64748b;
 }
 
-/* 본문 2단 배치 (CSS Grid) */
 .grid-layout {
   display: grid;
   grid-template-columns: 1.3fr 1fr;
@@ -51,7 +48,6 @@ body {
   gap: 20px;
 }
 
-/* 흰색 박스 카드 */
 .card {
   background: #ffffff;
   border: 1px solid #e2e8f0;
@@ -91,7 +87,6 @@ body {
   margin-bottom: 12px;
 }
 
-/* 폼 입력창 공통 */
 .field {
   display: flex;
   flex-direction: column;
@@ -128,7 +123,6 @@ textarea:focus {
   border-color: #3b82f6;
 }
 
-/* 가로 2칸, 3칸 정렬 */
 .row {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -141,7 +135,7 @@ textarea:focus {
   gap: 12px;
 }
 
-/* 프로필 사진 박스 레이아웃 */
+/* 프로필 사진 영역 및 이미지 핏 */
 .profile-box {
   display: flex;
   gap: 20px;
@@ -166,6 +160,13 @@ textarea:focus {
   align-items: center;
   justify-content: center;
   font-size: 28px;
+  overflow: hidden; /* 업로드된 이미지가 원 밖으로 나가지 않도록 방지 */
+}
+
+.circle-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* 비율 유지하며 원 안에 꽉 채우기 */
 }
 
 .photo-label {
@@ -183,11 +184,14 @@ textarea:focus {
   cursor: pointer;
 }
 
+.photo-btns button:hover {
+  background: #f1f5f9;
+}
+
 .fields-area {
   flex: 1;
 }
 
-/* 프로젝트 내부 회색 박스 */
 .sub-box {
   background: #f8fafc;
   border: 1px solid #e2e8f0;
@@ -200,7 +204,6 @@ textarea:focus {
   margin-bottom: 12px;
 }
 
-/* 추가 버튼(+ 버튼) */
 .btn-add {
   background: #eff6ff;
   border: 1px dashed #3b82f6;
@@ -211,7 +214,6 @@ textarea:focus {
   font-weight: bold;
 }
 
-/* 추천 기술 칩 버튼 */
 .chips {
   display: flex;
   align-items: center;
@@ -241,6 +243,17 @@ textarea:focus {
   border-radius: 50%;
   border: 2px solid transparent;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: bold;
+  color: #ffffff;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.color-circle:hover {
+  transform: scale(1.08);
 }
 
 .color-circle.coral { background-color: #f87171; }
@@ -252,6 +265,17 @@ textarea:focus {
   border: 1px dashed #94a3b8;
   color: #64748b;
   font-size: 18px;
+}
+
+/* 테마 선택 시 활성화 테두리 */
+.color-circle.active {
+  border: 3px solid #0f172a;
+  box-shadow: 0 0 0 3px rgba(15, 23, 42, 0.2);
+}
+
+.color-circle.custom.active {
+  border: 3px solid #0f172a;
+  color: #0f172a;
 }
 
 /* 하단 고정 바 */

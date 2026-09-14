@@ -31,15 +31,18 @@
             <span class="badge">필수</span>
           </div>
 
-          <!-- 프로필 사진 + 인풋 영역 -->
           <div class="profile-box">
-            <!-- 사진 업로드 UI -->
+            <!-- 프로필 사진 업로드 영역 -->
             <div class="photo-area">
-              <div class="circle-avatar">👤</div>
+              <div class="circle-avatar" id="profilePreview">👤</div>
               <p class="photo-label">프로필 사진</p>
+              
+              <!-- 실제 파일 선택 창 (숨김 처리) -->
+              <input type="file" id="photoInput" accept="image/*" style="display: none;">
+
               <div class="photo-btns">
-                <button type="button">업로드</button>
-                <button type="button">초기화</button>
+                <button type="button" id="btnUpload">업로드</button>
+                <button type="button" id="btnResetPhoto">초기화</button>
               </div>
             </div>
 
@@ -47,17 +50,17 @@
             <div class="fields-area">
               <div class="row">
                 <div class="field">
-                  <label>이름 *</label>
-                  <input type="text" placeholder="이름을 입력하세요">
+                  <label for="name">이름 *</label>
+                  <input type="text" id="name" placeholder="이름을 입력하세요">
                 </div>
                 <div class="field">
-                  <label>직무 / 포지션 *</label>
-                  <input type="text" placeholder="예: 프론트엔드 엔지니어">
+                  <label for="job">직무 / 포지션 *</label>
+                  <input type="text" id="job" placeholder="예: 프론트엔드 엔지니어">
                 </div>
               </div>
               <div class="field">
-                <label>자기소개 (한 줄 요약)</label>
-                <textarea placeholder="자신을 표현하는 소개글을 적어주세요."></textarea>
+                <label for="intro">자기소개 (한 줄 요약)</label>
+                <textarea id="intro" placeholder="자신을 표현하는 소개글을 적어주세요."></textarea>
               </div>
             </div>
           </div>
@@ -70,21 +73,20 @@
             <button type="button" class="btn-add">+ 프로젝트 추가</button>
           </div>
 
-          <!-- 프로젝트 개별 박스 -->
           <div class="sub-box">
             <div class="sub-box-title">새 프로젝트</div>
             <div class="row-3">
               <div class="field">
-                <label>프로젝트명</label>
-                <input type="text" placeholder="프로젝트명">
+                <label for="projTitle">프로젝트명</label>
+                <input type="text" id="projTitle" placeholder="프로젝트명">
               </div>
               <div class="field">
-                <label>진행기간</label>
-                <input type="text" placeholder="YYYY.MM - YYYY.MM">
+                <label for="projPeriod">진행기간</label>
+                <input type="text" id="projPeriod" placeholder="YYYY.MM - YYYY.MM">
               </div>
               <div class="field">
-                <label>설명 및 핵심 성과</label>
-                <input type="text" placeholder="역할과 성과를 작성하세요">
+                <label for="projDesc">설명 및 핵심 성과</label>
+                <input type="text" id="projDesc" placeholder="역할과 성과를 작성하세요">
               </div>
             </div>
           </div>
@@ -99,16 +101,16 @@
 
           <div class="row-3">
             <div class="field">
-              <label>활동/자격증명</label>
-              <input type="text" placeholder="예: 정보처리기사">
+              <label for="certName">활동/자격증명</label>
+              <input type="text" id="certName" placeholder="예: 정보처리기사">
             </div>
             <div class="field">
-              <label>발행처 / 주관사</label>
-              <input type="text" placeholder="예: 한국산업인력공단">
+              <label for="certOrg">발행처 / 주관사</label>
+              <input type="text" id="certOrg" placeholder="예: 한국산업인력공단">
             </div>
             <div class="field">
-              <label>취득연월</label>
-              <input type="text" placeholder="YYYY.MM">
+              <label for="certDate">취득연월</label>
+              <input type="text" id="certDate" placeholder="YYYY.MM">
             </div>
           </div>
         </article>
@@ -125,7 +127,7 @@
             <span class="text-gray">최대 12개 권장</span>
           </div>
           <p class="guide-text">보유 중인 핵심 기술과 개발 도구를 입력하세요.</p>
-          <input type="text" class="input-full" placeholder="+ 스택 추가 후 Enter">
+          <input type="text" id="stackInput" class="input-full" placeholder="+ 스택 추가 후 Enter">
           
           <div class="chips">
             <span>EX)</span>
@@ -140,17 +142,16 @@
         <article class="card">
           <div class="card-header">
             <h2>포트폴리오 테마</h2>
-            <span class="text-gray">미선택</span>
+            <span class="text-gray" id="selected-theme-text">미선택</span>
           </div>
           <p class="guide-text">포인트 대표 컬러를 선택하세요.</p>
           
-          <!-- 원형 컬러 버튼들 (기본 선택 없음) -->
           <div class="color-palette">
-            <button type="button" class="color-circle coral"></button>
-            <button type="button" class="color-circle amber"></button>
-            <button type="button" class="color-circle sky"></button>
-            <button type="button" class="color-circle mint"></button>
-            <button type="button" class="color-circle custom">+</button>
+            <button type="button" class="color-circle coral" data-theme="코랄 레드"></button>
+            <button type="button" class="color-circle amber" data-theme="앰버 옐로우"></button>
+            <button type="button" class="color-circle sky" data-theme="스카이 블루"></button>
+            <button type="button" class="color-circle mint" data-theme="민트 그린"></button>
+            <button type="button" class="color-circle custom" data-theme="커스텀 컬러">+</button>
           </div>
         </article>
 
@@ -161,16 +162,16 @@
           </div>
           <div class="row-3">
             <div class="field">
-              <label>GitHub 주소</label>
-              <input type="text" placeholder="github.com/...">
+              <label for="github">GitHub 주소</label>
+              <input type="text" id="github" placeholder="github.com/...">
             </div>
             <div class="field">
-              <label>이메일 주소</label>
-              <input type="email" placeholder="email@domain.com">
+              <label for="email">이메일 주소</label>
+              <input type="email" id="email" placeholder="email@domain.com">
             </div>
             <div class="field">
-              <label>블로그 / 노션</label>
-              <input type="text" placeholder="velog.io/...">
+              <label for="blog">블로그 / 노션</label>
+              <input type="text" id="blog" placeholder="velog.io/...">
             </div>
           </div>
         </article>
