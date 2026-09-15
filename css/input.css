@@ -61,7 +61,7 @@ body {
   color: #64748b;
 }
 
-/* 본문 2단 그리드 */
+/* 2단 그리드 */
 .grid-layout {
   display: grid;
   grid-template-columns: 1.15fr 1fr;
@@ -74,7 +74,7 @@ body {
   gap: 20px;
 }
 
-/* 카드 공통 */
+/* 카드 */
 .card {
   background: #ffffff;
   border: 1px solid #e2e8f0;
@@ -114,7 +114,7 @@ body {
   margin-bottom: 12px;
 }
 
-/* 폼 입력창 */
+/* 폼 인풋 기본 */
 .field {
   display: flex;
   flex-direction: column;
@@ -220,19 +220,51 @@ textarea:focus {
   flex: 1;
 }
 
-/* 프로젝트 서브 박스 */
-.sub-box {
-  background: #f8fafc;
+/* 동적 리스트 컨테이너 */
+.dynamic-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* 박스 없이 1줄로 정렬되는 행 */
+.dynamic-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.5fr 36px;
+  gap: 8px;
+  align-items: center;
+}
+
+.dynamic-row.has-labels {
+  align-items: flex-end;
+}
+
+.dynamic-row .field {
+  margin-bottom: 0;
+}
+
+/* 행 삭제 버튼 */
+.btn-row-del {
+  height: 44px;
+  background: transparent;
   border: 1px solid #e2e8f0;
-  border-radius: 8px;
-  padding: 16px;
+  border-radius: 6px;
+  color: #94a3b8;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
 }
 
-.sub-box-title {
-  font-weight: bold;
-  margin-bottom: 12px;
+.btn-row-del:hover {
+  background-color: #fee2e2;
+  border-color: #fca5a5;
+  color: #ef4444;
 }
 
+/* 추가 버튼(+ 버튼) */
 .btn-add {
   background: #eff6ff;
   border: 1px dashed #3b82f6;
@@ -243,7 +275,66 @@ textarea:focus {
   font-weight: bold;
 }
 
-/* 추천 기술 칩 */
+.btn-add:hover {
+  background: #dbeafe;
+}
+
+/* ================= 기술 스택 태그 UI ================= */
+.tag-box {
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 8px 10px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  min-height: 48px;
+  background-color: #ffffff;
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tag-badge {
+  background-color: #eff6ff;
+  border: 1px solid #bfdbfe;
+  color: #1d4ed8;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 13px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-tag-del {
+  background: none;
+  border: none;
+  color: #3b82f6;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 1;
+}
+
+.btn-tag-del:hover {
+  color: #ef4444;
+}
+
+.tag-input {
+  border: none !important;
+  outline: none !important;
+  height: 32px !important;
+  padding: 0 !important;
+  font-size: 13px;
+  flex: 1;
+  min-width: 140px;
+}
+
+/* 추천 기술 칩 버튼 */
 .chips {
   display: flex;
   align-items: center;
@@ -261,6 +352,10 @@ textarea:focus {
   font-size: 12px;
 }
 
+.chips button:hover {
+  background: #cbd5e1;
+}
+
 /* 하단 고정 바 */
 .bottom-bar {
   margin-top: 24px;
@@ -276,6 +371,22 @@ textarea:focus {
 .action-btns {
   display: flex;
   gap: 10px;
+}
+
+.btn-reset-all {
+  padding: 10px 18px;
+  background: #ffffff;
+  border: 1px solid #fca5a5;
+  color: #ef4444;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+  transition: background-color 0.15s;
+}
+
+.btn-reset-all:hover {
+  background-color: #fee2e2;
 }
 
 .btn-save {
