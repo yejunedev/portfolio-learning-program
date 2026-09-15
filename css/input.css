@@ -313,3 +313,35 @@ textarea:focus {
   cursor: pointer;
   font-weight: bold;
 }
+
+
+.back-wrap {
+  margin-bottom: 12px;
+}
+
+/* 뒤로 가기 버튼 모양 */
+.btn-back {
+  display: inline-block;
+  padding: 6px 14px;
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  color: #475569;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.15s;
+}
+
+.btn-back:hover {
+  background-color: #f8fafc;
+  color: #1e293b;
+}
+
+/* 정보 입력 글씨 줄바꿈 처리 */
+.breadcrumb {
+  display: block;
+  font-size: 13px;
+  color: #64748b;
+  margin-bottom: 4px;
+}
