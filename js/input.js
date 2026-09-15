@@ -1,4 +1,4 @@
-// LocalStorage 키
+// LocalStorage 키 이름
 const STORAGE_KEY = 'portfolio_draft_data';
 
 // 1. HTML 요소 가져오기
@@ -25,15 +25,12 @@ const githubInput = document.getElementById('github');
 const emailInput = document.getElementById('email');
 const blogInput = document.getElementById('blog');
 
-const themeText = document.getElementById('selected-theme-text');
-const colorCircles = document.querySelectorAll('.color-circle');
-
-// 현재 상태 변수
+// 현재 프로필 이미지 변수
 let currentPhoto = '';
-let currentTheme = '';
 
-
-// 2. LocalStorage에 데이터 자동 저장 함수
+// ==========================================
+// 2. LocalStorage에 데이터 자동 저장 함수[cite: 1]
+// ==========================================
 function autoSaveData() {
   const data = {
     photo: currentPhoto,
@@ -49,15 +46,15 @@ function autoSaveData() {
     stack: stackInput.value,
     github: githubInput.value,
     email: emailInput.value,
-    blog: blogInput.value,
-    theme: currentTheme
+    blog: blogInput.value
   };
 
   localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
 }
 
-
-// 3. 페이지 접속 시 저장된 데이터 복원 함수
+// ==========================================
+// 3. 페이지 접속 시 저장된 데이터 복원 함수[cite: 1]
+// ==========================================
 function loadSavedData() {
   const savedString = localStorage.getItem(STORAGE_KEY);
   if (!savedString) return;
@@ -88,35 +85,13 @@ function loadSavedData() {
   githubInput.value = data.github || '';
   emailInput.value = data.email || '';
   blogInput.value = data.blog || '';
-
-  // 테마 복원
-  if (data.theme) {
-    applyThemeSelection(data.theme);
-  }
 }
 
-
-// 4. 테마 선택 UI 적용 함수
-function applyThemeSelection(themeName) {
-  currentTheme = themeName;
-  themeText.innerText = themeName;
-
-  colorCircles.forEach(circle => {
-    circle.classList.remove('active');
-    circle.innerHTML = circle.classList.contains('custom') ? '+' : '';
-
-    if (circle.dataset.theme === themeName) {
-      circle.classList.add('active');
-      circle.innerHTML = '✓';
-    }
-  });
-
-  autoSaveData();
-}
-
-// 5. 프로필 사진 업로드 및 초기화 처리
+// ==========================================
+// 4. 프로필 사진 업로드 및 초기화 처리
+// ==========================================
 btnUpload.addEventListener('click', () => {
-  photoInput.click(); // 숨겨둔 file input 실행
+  photoInput.click();
 });
 
 photoInput.addEventListener('change', (e) => {
@@ -139,8 +114,9 @@ btnResetPhoto.addEventListener('click', () => {
   autoSaveData();
 });
 
-
-// 6. 텍스트 입력 및 테마 이벤트 등록
+// ==========================================
+// 5. 텍스트 입력 이벤트 등록 (실시간 자동 저장)[cite: 1]
+// ==========================================
 const allInputs = [
   nameInput, jobInput, introInput,
   projTitleInput, projPeriodInput, projDescInput,
@@ -154,15 +130,7 @@ allInputs.forEach(input => {
   }
 });
 
-colorCircles.forEach(circle => {
-  circle.addEventListener('click', () => {
-    const selected = circle.dataset.theme;
-    if (selected) {
-      applyThemeSelection(selected);
-    }
-  });
-});
-
+// 임시 저장 버튼 클릭 시[cite: 1]
 const saveBtn = document.querySelector('.btn-save');
 if (saveBtn) {
   saveBtn.addEventListener('click', () => {
@@ -171,5 +139,5 @@ if (saveBtn) {
   });
 }
 
-// 초기 실행
+// 페이지 진입 시 복원 함수 실행[cite: 1]
 loadSavedData();
