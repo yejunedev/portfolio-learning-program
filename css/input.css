@@ -220,14 +220,12 @@ textarea:focus {
   flex: 1;
 }
 
-/* 동적 리스트 컨테이너 */
 .dynamic-container {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-/* 박스 없이 1줄로 정렬되는 행 */
 .dynamic-row {
   display: grid;
   grid-template-columns: 1fr 1fr 1.5fr 36px;
@@ -398,7 +396,7 @@ textarea:focus {
   font-weight: bold;
 }
 
-.btn-create {
+.next-btn {
   padding: 10px 20px;
   background: #1e3a8a;
   color: white;
