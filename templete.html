@@ -1,14 +1,149 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>템플릿 선택</title>
+  <link rel="stylesheet" href="./css/template.css">
 </head>
 <body>
-    <h1>템플릿 선택 화면</h1>
-    <script>
-        
-    </script>
+
+  <div class="template-wrapper">
+    <!-- 상단 타이틀 영역 -->
+    <header class="title-header">
+      <h1 class="main-title">템플릿 선택</h1>
+      <p class="sub-title">자신의 스타일에 가장 잘 맞는 템플릿을 골라보세요!</p>
+    </header>
+
+    <!-- 4종 템플릿 카드 목록 -->
+    <main class="template-grid">
+
+      <!-- 1번째: 심플 카드형 (블루) -->
+      <article class="template-card">
+        <div class="preview-area preview-blue">
+          <div class="mini-ui simple-layout">
+            <div class="mini-side">
+              <div class="mini-avatar"></div>
+              <div class="mini-line w-60"></div>
+              <div class="mini-line w-40"></div>
+            </div>
+            <div class="mini-main">
+              <div class="mini-card-box">
+                <div class="mini-line w-80"></div>
+              </div>
+              <div class="mini-card-box grid-2">
+                <div class="mini-thumb"></div>
+                <div class="mini-thumb"></div>
+              </div>
+              <div class="mini-card-box">
+                <div class="mini-line w-50"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-desc">
+          <h2>심플 카드형</h2>
+          <p>프로필과 주요 정보를 카드별로<br>나누어 한눈에 확인할 수 있습니다.</p>
+          <button type="button" class="btn-select">선택하기</button>
+        </div>
+      </article>
+
+      <!-- 2번째: 미니멀 헤더형 (초록) -->
+      <article class="template-card">
+        <div class="preview-area preview-green">
+          <div class="mini-ui header-layout">
+            <div class="mini-top-banner">
+              <div class="mini-line w-40 dark mb-4"></div>
+              <span class="mini-tag-badge"></span>
+            </div>
+            <div class="mini-bottom-content">
+              <div class="mini-line w-70 mb-8"></div>
+              <div class="mini-tag-row">
+                <span class="mini-tag-green"></span>
+                <span class="mini-tag-green"></span>
+                <span class="mini-tag-green"></span>
+              </div>
+              <div class="mini-divider"></div>
+              <div class="mini-line w-50"></div>
+              <div class="mini-divider"></div>
+              <div class="mini-line w-90"></div>
+            </div>
+          </div>
+        </div>
+        <div class="card-desc">
+          <h2>미니멀 헤더형</h2>
+          <p>상단 배너와 깔끔한 라인 배치로<br>핵심 내용에 온전히 집중합니다.</p>
+          <button type="button" class="btn-select">선택하기</button>
+        </div>
+      </article>
+
+      <!-- 3번째: 프로필 사이드형 (노랑) -->
+      <article class="template-card">
+        <div class="preview-area preview-yellow">
+          <div class="mini-ui side-layout">
+            <div class="mini-left-panel">
+              <div class="mini-avatar"></div>
+              <div class="mini-line w-50"></div>
+              <div class="mini-chip-group">
+                <span class="mini-chip"></span>
+                <span class="mini-chip"></span>
+                <span class="mini-chip"></span>
+              </div>
+            </div>
+            <div class="mini-right-panel">
+              <div class="mini-line w-40 mb-8"></div>
+              <div class="mini-block w-80"></div>
+              <div class="mini-block w-60"></div>
+              <div class="mini-block w-50"></div>
+            </div>
+          </div>
+        </div>
+        <div class="card-desc">
+          <h2>프로필 사이드형</h2>
+          <p>기본 정보와 주요 내용을 좌우로<br>나누어 정리할 수 있습니다.</p>
+          <button type="button" class="btn-select">선택하기</button>
+        </div>
+      </article>
+
+      <!-- 4번째: 모던 레이아웃형 (핑크) -->
+      <article class="template-card">
+        <div class="preview-area preview-pink">
+          <div class="mini-ui modern-layout">
+            <div class="mini-top-row">
+              <div class="mini-profile-box">
+                <div class="mini-avatar"></div>
+                <div class="mini-line w-50"></div>
+                <div class="mini-line w-70"></div>
+              </div>
+              <div class="mini-project-box">
+                <div class="mini-line w-40 mb-8"></div>
+                <div class="mini-line w-80"></div>
+                <div class="mini-chips">
+                  <span class="mini-chip-red"></span>
+                  <span class="mini-chip-red"></span>
+                </div>
+              </div>
+            </div>
+            <div class="mini-bottom-row">
+              <div class="mini-block-pink"></div>
+              <div class="mini-line w-90 mt-4"></div>
+            </div>
+          </div>
+        </div>
+        <div class="card-desc">
+          <h2>모던 레이아웃형</h2>
+          <p>주요 내용을 넓게 배치하여 프로젝트와<br>활동을 강조할 수 있습니다.</p>
+          <button type="button" class="btn-select">선택하기</button>
+        </div>
+      </article>
+
+    </main>
+
+    <!-- 하단 뒤로가기 버튼 -->
+    <footer class="footer-nav">
+      <a href="./input.html" class="btn-back-center">뒤로가기</a>
+    </footer>
+  </div>
+
 </body>
 </html>
