@@ -10,7 +10,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+           
         }
 
         body {
@@ -290,7 +290,7 @@
 
 .btn-pdf {
     background-color: #3366FF;
-    color: #fff;
+    color: #ffffff;
 }
 
 .btn-edit {
@@ -299,10 +299,33 @@
 }
 
 @media print {
-    .no-print {
-        display: none;
-    }
-}
+            body {
+                min-height: auto;
+                display: block;
+            }
+
+            .no-print {
+                display: none;
+            }
+
+            * {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .card,
+            .footer-card {
+                page-break-inside: avoid;
+            }
+
+            .page-title {
+                margin-bottom: 12px;
+            }
+
+            @page {
+                margin: 10mm;
+            }
+        }
     </style>
 </head>
 

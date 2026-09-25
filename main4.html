@@ -177,10 +177,13 @@
         object-fit: contain;
     }
     .action-buttons {
+     position: fixed;
+    bottom: 24px;
+    right: 24px;
     display: flex;
-    gap: 12px;
-    justify-content: center;
-    margin-top: 24px;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 100;
 }
 
 .action-buttons button {
@@ -193,7 +196,7 @@
 
 .btn-pdf {
     background-color: #3366FF;
-    color: #fff;
+    color: #ffffff;
 }
 
 .btn-edit {
@@ -205,14 +208,17 @@
     .no-print {
         display: none;
     }
+
+
+    * {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
 }
 </style>
 
 <body>
-    <div class="action-buttons no-print">
-    <button class="btn-edit" onclick="location.href='input.html'">수정하기</button>
-    <button class="btn-pdf" onclick="window.print()">PDF로 저장</button>
-</div>
+    
     <div class="result-bg">
 
         <div class="top-section">
@@ -262,6 +268,12 @@
             </div>
         </div>
         <hr style="margin-top: 20px; margin-bottom: 12px; border: none; border-top: 1px solid #777;">
+
+
+         <div class="action-buttons no-print">
+            <button class="btn-edit" onclick="location.href='input.html'">수정하기</button>
+            <button class="btn-pdf" onclick="window.print()">PDF로 저장</button>
+        </div>
 
     </div>
 </body>
