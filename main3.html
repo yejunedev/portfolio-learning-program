@@ -108,12 +108,41 @@ h2 {
     border-radius: 17px;
     margin-top: 30px;
 }
+.action-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 24px;
+}
+
+.action-buttons button {
+    padding: 12px 28px;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.btn-pdf {
+    background-color: #3366FF;
+    color: #fff;
+}
+
+.btn-edit {
+    background-color: #eee;
+    color: #333;
+}
+
+@media print {
+    .no-print {
+        display: none;
+    }
+}
 
 </style>
 
-
-
 <body>
+    
     <div class="card">
         <div class="left-panel">
             <img src="./img/김미림.svg" alt="">
@@ -141,6 +170,11 @@ h2 {
             <div class="profile">미림 프로젝트</div>
             <div class="profile">따옴</div>
         </div>
+    </div>
+
+    <div class="action-buttons no-print">
+        <button class="btn-edit" onclick="location.href='input.html'">수정하기</button>
+        <button class="btn-pdf" onclick="window.print()">PDF로 저장</button>
     </div>
 </body>
 

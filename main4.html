@@ -176,9 +176,43 @@
         height: 28px;
         object-fit: contain;
     }
+    .action-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 24px;
+}
+
+.action-buttons button {
+    padding: 12px 28px;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.btn-pdf {
+    background-color: #3366FF;
+    color: #fff;
+}
+
+.btn-edit {
+    background-color: #eee;
+    color: #333;
+}
+
+@media print {
+    .no-print {
+        display: none;
+    }
+}
 </style>
 
 <body>
+    <div class="action-buttons no-print">
+    <button class="btn-edit" onclick="location.href='input.html'">수정하기</button>
+    <button class="btn-pdf" onclick="window.print()">PDF로 저장</button>
+</div>
     <div class="result-bg">
 
         <div class="top-section">

@@ -273,6 +273,36 @@
             font-size: 13px;
             opacity: 0.9;
         }
+        .action-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 24px;
+}
+
+.action-buttons button {
+    padding: 12px 28px;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.btn-pdf {
+    background-color: #3366FF;
+    color: #fff;
+}
+
+.btn-edit {
+    background-color: #eee;
+    color: #333;
+}
+
+@media print {
+    .no-print {
+        display: none;
+    }
+}
     </style>
 </head>
 
@@ -374,6 +404,12 @@
                 <p class="footer-sub">언제든 편하게 연락해 주세요.</p>
             </section>
         </main>
+    </div>
+
+
+     <div class="action-buttons no-print">
+        <button class="btn-edit" onclick="location.href='input.html'">수정하기</button>
+        <button class="btn-pdf" onclick="window.print()">PDF로 저장</button>
     </div>
 
 </body>
