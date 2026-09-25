@@ -1,0 +1,352 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 50%, #f1f5f9 100%);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: #1e293b;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+.template-wrapper {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+/* 상단 타이틀 */
+.title-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.main-title {
+  font-size: 38px;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.5px;
+  margin-bottom: 12px;
+}
+
+.sub-title {
+  font-size: 19px;
+  font-weight: 500;
+  color: #4F4F4F;
+  letter-spacing: -0.3px;
+}
+
+/* 4열 템플릿 그리드 */
+.template-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+  margin-bottom: 44px;
+}
+
+/* 템플릿 카드 */
+.template-card {
+  background: #ffffff;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  border: 2px solid transparent;
+}
+
+.template-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 30px -10px rgba(99, 102, 241, 0.18);
+  border-color: #6366f1;
+}
+
+/* 미리보기 상단 영역 색상 */
+.preview-area {
+  height: 210px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.preview-blue   { background-color: #93b5fa; } /* 1. 파랑 */
+.preview-green  { background-color: #a7d08c; } /* 2. 초록 */
+.preview-yellow { background-color: #fef08a; } /* 3. 노랑 */
+.preview-pink   { background-color: #fbcfe8; } /* 4. 핑크 */
+
+/* 카드 설명 및 선택 버튼 */
+.card-desc {
+  padding: 22px 18px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.card-desc h2 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 8px;
+}
+
+.card-desc p {
+  font-size: 13px;
+  line-height: 1.5;
+  color: #64748b;
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+
+.btn-select {
+  width: 100%;
+  height: 42px;
+  background-color: #60a5fa;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  font-size: 14.5px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.btn-select:hover {
+  background-color: #3b82f6;
+}
+
+/* 하단 뒤로가기 버튼 */
+.footer-nav {
+  text-align: center;
+}
+
+.btn-back-center {
+  display: inline-block;
+  padding: 10px 36px;
+  background-color: #ffffff;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 12px;
+  color: #334155;
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  transition: background-color 0.15s, border-color 0.15s;
+}
+
+.btn-back-center:hover {
+  background-color: #f8fafc;
+  border-color: #94a3b8;
+}
+
+/* ================================================= */
+/* 미니어처 프리뷰 그래픽 전용 스타일 */
+/* ================================================= */
+.mini-ui {
+  width: 100%;
+  height: 100%;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  padding: 10px;
+  display: flex;
+  gap: 8px;
+  overflow: hidden;
+}
+
+.mini-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #cbd5e1;
+  margin: 0 auto 6px;
+}
+
+.mini-line {
+  height: 5px;
+  background-color: #e2e8f0;
+  border-radius: 3px;
+  margin-bottom: 5px;
+}
+
+.w-40 { width: 40%; }
+.w-50 { width: 50%; }
+.w-60 { width: 60%; }
+.w-70 { width: 70%; }
+.w-80 { width: 80%; }
+.w-90 { width: 90%; }
+.mb-4 { margin-bottom: 4px; }
+.mb-8 { margin-bottom: 8px; }
+.mt-4 { margin-top: 4px; }
+
+/* 1. 심플 카드형 (블루) */
+.simple-layout .mini-side {
+  width: 35%;
+  border-right: 1px solid #f1f5f9;
+  padding-right: 6px;
+}
+.simple-layout .mini-main {
+  width: 65%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.mini-card-box {
+  background: #f8fafc;
+  border: 1px solid #edf2f7;
+  border-radius: 4px;
+  padding: 6px;
+}
+.mini-card-box.grid-2 {
+  display: flex;
+  gap: 6px;
+}
+.mini-thumb {
+  flex: 1;
+  height: 26px;
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+/* 2. 미니멀 헤더형 (초록) */
+.header-layout {
+  flex-direction: column;
+  padding: 0 !important;
+}
+.mini-top-banner {
+  background-color: #9ecb7e;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.mini-line.dark {
+  background-color: #1e293b;
+  height: 6px;
+}
+.mini-tag-badge {
+  width: 30px;
+  height: 9px;
+  background-color: #7fae5e;
+  border-radius: 10px;
+}
+.mini-bottom-content {
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.mini-tag-row {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 6px;
+}
+.mini-tag-green {
+  width: 20px;
+  height: 9px;
+  background-color: #6da24b;
+  border-radius: 4px;
+}
+.mini-divider {
+  height: 1px;
+  background-color: #e2e8f0;
+  margin: 5px 0;
+}
+
+/* 3. 프로필 사이드형 (노랑) */
+.side-layout .mini-left-panel {
+  width: 36%;
+  background: #fefce8;
+  border-radius: 6px;
+  padding: 8px 6px;
+}
+.side-layout .mini-right-panel {
+  width: 64%;
+  padding: 4px;
+}
+.mini-chip-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 8px;
+}
+.mini-chip {
+  height: 6px;
+  background: #fde047;
+  border-radius: 3px;
+}
+.mini-block {
+  height: 11px;
+  background: #fef08a;
+  border-radius: 4px;
+  margin-bottom: 6px;
+}
+
+/* 4. 모던 레이아웃형 (핑크) */
+.modern-layout {
+  flex-direction: column;
+}
+.mini-top-row {
+  display: flex;
+  gap: 8px;
+  flex: 1;
+}
+.mini-profile-box {
+  width: 45%;
+  background: #fdf2f8;
+  border-radius: 6px;
+  padding: 6px;
+}
+.mini-project-box {
+  width: 55%;
+  background: #fdf2f8;
+  border-radius: 6px;
+  padding: 6px;
+}
+.mini-chips {
+  display: flex;
+  gap: 4px;
+  margin-top: 6px;
+}
+.mini-chip-red {
+  width: 20px;
+  height: 8px;
+  background: #f472b6;
+  border-radius: 3px;
+}
+.mini-bottom-row {
+  height: 36px;
+  border-top: 1px solid #fce7f3;
+  padding-top: 6px;
+}
+.mini-block-pink {
+  width: 50%;
+  height: 9px;
+  background: #fbcfe8;
+  border-radius: 3px;
+}
+
+/* 반응형 */
+@media (max-width: 1100px) {
+  .template-grid {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 640px;
+    margin: 0 auto 40px;
+  }
+}
+
+@media (max-width: 600px) {
+  .template-grid {
+    grid-template-columns: 1fr;
+    max-width: 340px;
+  }
+}
