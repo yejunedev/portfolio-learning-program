@@ -315,5 +315,30 @@ if (btnResetAll) {
   });
 }
 
+
+
+const btnNext = document.querySelector('.next-btn');
+
+if (btnNext) {
+    btnNext.addEventListener('click', () => {
+        if (!nameInput.value.trim()) {
+            alert('이름을 입력해주세요.');
+            nameInput.focus();
+            return;
+        }
+
+        if (!jobInput.value.trim()) {
+            alert('직무 / 포지션을 입력해주세요.');
+            jobInput.focus();
+            return;
+        }
+
+        // 필수 항목 다 채워졌으면 저장하고 이동
+        autoSaveData();
+        location.href = 'template.html';
+    });
+}
+
+
 // 최초 실행
 loadSavedData();

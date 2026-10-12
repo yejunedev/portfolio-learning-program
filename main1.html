@@ -331,29 +331,29 @@
 
 <body>
 
-    <h1 class="page-title">안녕하세요, <span class="highlight-name">김미림</span> 입니다</h1>
+    <h1 class="page-title">안녕하세요, <span class="highlight-name" id="userName1"></span> 입니다</h1>
 
     <div class="container">
 
         <aside class="sidebar">
             <div class="profile-img-container">
-                <img src="./img/김미림.svg" alt="김미림 프로필" class="profile-img">
+                <img  id="userPhoto"   src="" alt="프로필 사진" class="profile-img">
             </div>
-            <h2 class="profile-name">김미림</h2>
-            <p class="profile-job">풀스택 개발자</p>
+            <h2 class="profile-name" id="userName2"></h2>
+            <p class="profile-job" id="userJob"></p>
 
             <div class="contact-list">
-                <a href="mailto:kimirim@gmail.com" class="contact-item">
+                <a href="#" class="contact-item" id="emailLink">
                     <img src="./img/이메일.svg" alt="이메일" class="contact-icon">
-                    <span>kimirim@gmail.com</span>
+                    <span id="userEmail"></span>
                 </a>
-                <a href="https://github.com/gimmirimdev" class="contact-item" target="_blank">
+                <a href="#" class="contact-item" id="githubLink" target="_blank">
                     <img src="./img/깃허브.svg" alt="깃허브" class="contact-icon">
-                    <span>github.com/gimmirimdev</span>
+                    <span id="userGithub"></span>
                 </a>
-                <a href="#" class="contact-item">
+                <a href="#" class="contact-item"   id="instaLink">
                     <img src="./img/인스타.svg" alt="인스타그램" class="contact-icon">
-                    <span>kimmirim12</span>
+                    <span id="userInsta"></span>
                 </a>
             </div>
         </aside>
@@ -365,11 +365,8 @@
                 <div class="card-header">
                     <span><img src="./img/소개.svg" alt=""></span> 소개
                 </div>
-                <p class="intro-text">
-                    새로운 기술을 배우고 문제를 해결하는 것을 좋아합니다.<br>
-
-                    사용자 경험을 생각하며 깔끔하고 유지보수가 좋은 코드를 작성하는 개발자가 되고 싶습니다.
-                </p>
+                <p class="intro-text"   id="userIntro"></p>
+                    
             </section>
 
 
@@ -377,12 +374,7 @@
                 <div class="card-header">
                     <span><img src="./img/기술 스택.svg" alt=""></span> 기술 스택
                 </div>
-                <div class="tech-tags">
-                    <span class="tag tag-html">HTML</span>
-                    <span class="tag tag-css">CSS</span>
-                    <span class="tag tag-js">JavaScript</span>
-                    <span class="tag tag-github">GitHub</span>
-                </div>
+                <div class="tech-tags"     id="skillList"></div>
             </section>
 
             
@@ -390,14 +382,7 @@
                 <div class="card-header">
                     <span><img src="./img/프로젝트.svg" alt=""></span> 프로젝트
                 </div>
-                <div class="project-grid">
-                    <div class="project-card">
-                        <div class="project-thumbnail"></div>
-                    </div>
-                    <div class="project-card">
-                        <div class="project-thumbnail"></div>
-                    </div>
-                </div>
+                <div class="project-grid"   id="projectList"></div>
             </section>
 
         
@@ -405,20 +390,7 @@
                 <div class="card-header">
                     <span><img src="./img/자격증.svg" alt="자격증"></span> 자격증
                 </div>
-                <div class="cert-grid">
-                    <div class="cert-item">
-                        <img src="./img/자격증.svg" alt="정보처리기능사" class="cert-icon">
-                        <span>정보처리기능사</span>
-                    </div>
-                    <div class="cert-item">
-                        <img src="./img/자격증.svg" alt="SQLD" class="cert-icon">
-                        <span>SQLD</span>
-                    </div>
-                    <div class="cert-item">
-                        <img src="./img/자격증.svg" alt="GTQ 1급" class="cert-icon">
-                        <span>GTQ 1급</span>
-                    </div>
-                </div>
+                <div class="cert-grid"   id="certList"></div>
             </section>
 
             
@@ -434,6 +406,55 @@
         <button class="btn-edit" onclick="location.href='input.html'">수정하기</button>
         <button class="btn-pdf" onclick="window.print()">PDF로 저장</button>
     </div>
+
+    <script>
+        const data = JSON.parse(localStorage.getItem('portfolio_draft_data'));
+
+if (data) {
+    document.getElementById('userName1').textContent = data.name;
+    document.getElementById('userName2').textContent = data.name;
+    document.getElementById('userJob').textContent = data.job;
+    document.getElementById('userIntro').textContent = data.intro;
+
+    if (data.photo) {
+        document.getElementById('userPhoto').src = data.photo;
+    }
+
+    document.getElementById('userEmail').textContent = data.email || '';
+    document.getElementById('emailLink').href = 'mailto:' + (data.email || '');
+    document.getElementById('userGithub').textContent = data.github || '';
+    document.getElementById('githubLink').href = 'https://' + (data.github || '');
+    document.getElementById('userInsta').textContent = data.blog || '';
+
+    document.getElementById('skillList').innerHTML = (data.tags || [])
+        .map(tag => `<span class="tag tag-github">${tag}</span>`)
+        .join('');
+
+    document.getElementById('projectList').innerHTML = (data.projects || [])
+    .filter(p => p.title)     
+    .map(p => `
+            <div class="project-card">
+                <div class="project-thumbnail"></div>
+                <div>
+                    <strong>${p.title}</strong><br>
+                    <span style="font-size:11px;color:#888;">${p.period}</span><br>
+                    <span style="font-size:12px;">${p.desc}</span>
+                </div>
+            </div>`)
+        .join('');
+
+    document.getElementById('certList').innerHTML = (data.certs || [])
+    .filter(c => c.name)    
+    .map(c => `
+            <div class="cert-item">
+                <img src="./img/자격증.svg" alt="${c.name}" class="cert-icon">
+                <span>${c.name} (${c.date})</span>
+            </div>`)
+        .join('');
+}
+    </script>
+    
+
 
 </body>
 

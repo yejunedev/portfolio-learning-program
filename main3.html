@@ -154,30 +154,24 @@ h2 {
     
     <div class="card">
         <div class="left-panel">
-            <img src="./img/김미림.svg" alt="">
-            <h1>김미림</h1>
-            <p>프론트엔드 개발자</p>
+            <img id="userPhone"  src="" alt="프로필">
+            <h1 id="userName"></h1>
+            <p id="userJob"></p>
 
 
             <span class="label-tag">기술 스택</span>
-            <p>React</p>
-            <p>TypeScript</p>
-            <p>Next.js</p>
-            <p>Tailwind CSS</p>
+            <div id="skillList"></div>
 
 
             <span class="label-tag-small">자격증</span>
-            <p>네트워크관리사 2급</p>
-            <p>정보처리기능사</p>
+            <div id="certList"></div>
         </div>
 
         <div class="right-panel">
             <h2>소개</h2>
-            <p>사용자 경험을 고민하는 프론트엔드 개발자입니다.</p>
+            <p id="userIntro"></p>
             <h2>프로젝트</h2>
-            <div class="profile">포트폴리오 생성기</div>
-            <div class="profile">미림 프로젝트</div>
-            <div class="profile">따옴</div>
+            <div id="projectList"></div>
         </div>
     </div>
 
@@ -185,6 +179,36 @@ h2 {
         <button class="btn-edit" onclick="location.href='input.html'">수정하기</button>
         <button class="btn-pdf" onclick="window.print()">PDF로 저장</button>
     </div>
+
+
+
+    <script>
+    const data = JSON.parse(localStorage.getItem('portfolio_draft_data'));
+
+    if (data) {
+        document.getElementById('userName').textContent = data.name;
+        document.getElementById('userJob').textContent = data.job;
+        document.getElementById('userIntro').textContent = data.intro;
+
+        if (data.photo) {
+            document.getElementById('userPhoto').src = data.photo;
+        }
+
+        document.getElementById('skillList').innerHTML = (data.tags || [])
+            .map(tag => `<p>${tag}</p>`)
+            .join('');
+
+        document.getElementById('certList').innerHTML = (data.certs || [])
+            .filter(c => c.name)
+            .map(c => `<p>${c.name}</p>`)
+            .join('');
+
+        document.getElementById('projectList').innerHTML = (data.projects || [])
+            .filter(p => p.title)
+            .map(p => `<div class="profile">${p.title}</div>`)
+            .join('');
+    }
+</script>
 </body>
 
 </html>
