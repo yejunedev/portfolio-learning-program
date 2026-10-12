@@ -225,23 +225,17 @@
 
 
             <div class="profile-card">
-                <img src="./img/김미림.svg" alt="프로필 사진" class="profile-img">
-                <h2 class="name">김미림</h2>
-                <p class="job">데이터 분석가</p>
+                <img id="userPhoto"  src="" alt="프로필 사진" class="profile-img">
+                <h2 class="name" id="userName"></h2>
+                <p class="job" id="userJob"></p>
                 <hr class="divider">
-                <p class="intro">숫자 뒤에 숨은 이야기를 찾는 데이터 분석가입니다. 작은 지표 하나가 의사결정을 바꾼다고 믿습니다.</p>
+                <p class="intro" id="userIntro"></p>
             </div>
 
             <div class="project-card">
                 <h3 class="section-title">PROJECT</h3>
-                <ul class="project-list">
-                    <li>이탈 예측 대시보드</li>
-                    <li>매출 트렌드 시각화</li>
-                </ul>
-                <div class="tags">
-                    <span class="tag">Python</span>
-                    <span class="tag">SQL</span>
-                </div>
+                <ul class="project-list"  id="projectList"></ul>
+                <div class="tags"  id="skillList"> </div>
             </div>
 
         </div>
@@ -249,22 +243,21 @@
 
         <div class="section">
             <h3 class="section-title">자격증 및 활동</h3>
-            <span class="cert-tag">빅데이터분석기사</span>
-            <span class="cert-tag">ADsP</span>
+            <div id="certList"></div>
         </div>
 
         <div class="contact-list">
             <div class="contact-item">
                 <img src="./img/이메일.svg" alt="이메일" class="contact-icon">
-                <span>Kimirim@gmail.com</span>
+                <span id="userEmail"></span>
             </div>
             <div class="contact-item">
                 <img src="./img/깃허브.svg" alt="깃허브" class="contact-icon">
-                <span>github.com/gimmirimdev</span>
+                <span id="userGithub"></span>
             </div>
             <div class="contact-item">
                 <img src="./img/인스타.svg" alt="인스타그램" class="contact-icon">
-                <span>Kimmirim12</span>
+                <span id="userBlog"></span>
             </div>
         </div>
         <hr style="margin-top: 20px; margin-bottom: 12px; border: none; border-top: 1px solid #777;">
@@ -277,5 +270,37 @@
 
     </div>
 </body>
+
+<script>
+    const data = JSON.parse(localStorage.getItem('portfolio_draft_data'));
+
+    if (data) {
+        document.getElementById('userName').textContent = data.name;
+        document.getElementById('userJob').textContent = data.job;
+        document.getElementById('userIntro').textContent = data.intro;
+
+        if (data.photo) {
+            document.getElementById('userPhoto').src = data.photo;
+        }
+
+        document.getElementById('projectList').innerHTML = (data.projects || [])
+            .filter(p => p.title)
+            .map(p => `<li>${p.title}</li>`)
+            .join('');
+
+        document.getElementById('skillList').innerHTML = (data.tags || [])
+            .map(tag => `<span class="tag">${tag}</span>`)
+            .join('');
+
+        document.getElementById('certList').innerHTML = (data.certs || [])
+            .filter(c => c.name)
+            .map(c => `<span class="cert-tag">${c.name}</span>`)
+            .join('');
+
+        document.getElementById('userEmail').textContent = data.email || '';
+        document.getElementById('userGithub').textContent = data.github || '';
+        document.getElementById('userBlog').textContent = data.blog || '';
+    }
+</script>
 
 </html>
