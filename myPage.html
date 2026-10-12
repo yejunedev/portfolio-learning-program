@@ -1,19 +1,66 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FolLearn</title>
+  <link rel="stylesheet" href="./css/myPage.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-
 <body>
 
-    <h1>내 포트폴리오 모음 화면</h1>
+  <!-- 헤더 -->
+  <header class="header">
+    <div class="logo">FolLearn</div>
+    <div class="profile-avatar">미림</div>
+  </header>
 
-    <script>
-        
-    </script>
+  <!-- 메인 레이아웃 -->
+  <div class="main-container">
     
-</body>
+    <!-- 왼쪽 사이드바 (a 태그로 구성) -->
+    <aside class="sidebar">
+      <nav class="nav-menu">
+        <a href="dashboard.html" class="nav-item">
+          <i class="fa-regular fa-clipboard"></i>
+          <span>내 포트폴리오</span>
+        </a>
+        <a href="about.html" class="nav-item">
+          <i class="fa-solid fa-code"></i>
+          <span>프로그램 소개</span>
+        </a>
+        <a href="template.html" class="nav-item">
+          <i class="fa-solid fa-table-cells-large"></i>
+          <span>템플릿 구성</span>
+        </a>
+      </nav>
+    </aside>
 
+    <!-- 오른쪽 콘텐츠 본문 -->
+    <main class="content-area">
+      <div class="content-header">
+        <h1 class="page-title">My project</h1>
+        <!-- JS 없이 a 태그로 input.html 이동 -->
+        <a href="input.html" class="btn-new-project">New project</a>
+      </div>
+
+      <div class="project-grid">
+        
+        <a href="input.html" class="project-card new-card">
+          <div class="plus-icon">+</div>
+          <div class="card-label">New project</div>
+        </a>
+
+        <!-- 빈 카드 슬롯들 -->
+        <div class="project-card empty-card"></div>
+        <div class="project-card empty-card"></div>
+        <div class="project-card empty-card"></div>
+        <div class="project-card empty-card"></div>
+        <div class="project-card empty-card"></div>
+      </div>
+    </main>
+
+  </div>
+
+</body>
 </html>
