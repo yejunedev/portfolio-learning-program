@@ -25,7 +25,7 @@ const messageEl = document.getElementById("message");
 const btnLogin = document.getElementById("btn-login");
 const btnSignup = document.getElementById("btn-signup");
 
-// 1. 회원가입: 가입 후 로그아웃시키고 브라우저 팝업창(alert) 띄우기
+// 회원가입 완료 알림
 if (btnSignup) {
   btnSignup.addEventListener("click", async () => {
     const email = emailInput.value.trim();
@@ -49,7 +49,6 @@ if (btnSignup) {
   });
 }
 
-// 2. 로그인: 사용자가 직접 로그인 버튼을 눌러 통과했을 때만 input.html로 이동
 if (btnLogin) {
   btnLogin.addEventListener("click", async () => {
     const email = emailInput.value.trim();
