@@ -122,21 +122,17 @@
     </div>
     
     <div class="menu">
-        <p style="color: #585555;">플레이어의 몰입을 고민하는 게임 개발자입니다.</p>
+        <p id="userIntro" style="color: #585555;"></p>
 
-        <div id="card">
-            <p>Unituy</p>
-            <p>C#</p>
-            <p>C++</p>
-        </div>
+        <div id="card"></div>
+
         <div id="pro">
             <p>PROJECT</p>
         </div>
+
         <div id="opop">
-            <p>던전 로그라이트</p>
-            <hr>
-            <p>2D 플랫포머 게임</p>
-            <p style="word-spacing: 70px; color: #585555;">Kimirim@gmail.com             github.com/gimmirimdev            Kimmirim12</p>
+            <div id="projectList"></div>
+            <p id="userContact" style="word-spacing: 70px; color: #585555;"></p>
             <hr style="border: none; border-top: 1px solid #C0BEBE;">
         </div>
     </div>
@@ -147,5 +143,27 @@
         <button class="btn-pdf" onclick="window.print()">PDF로 저장</button>
     </div>
 </body>
+
+<script>
+    const data = JSON.parse(localStorage.getItem('portfolio_draft_data'));
+
+    if (data) {
+        document.getElementById('userName').textContent = data.name;
+        document.getElementById('userJob').textContent = data.job;
+        document.getElementById('userIntro').textContent = data.intro;
+
+        document.getElementById('card').innerHTML = (data.tags || [])
+            .map(tag => `<p>${tag}</p>`)
+            .join('');
+
+        document.getElementById('projectList').innerHTML = (data.projects || [])
+            .filter(p => p.title)
+            .map((p, i, arr) => `<p>${p.title}</p>${i < arr.length - 1 ? '<hr>' : ''}`)
+            .join('');
+
+        document.getElementById('userContact').textContent =
+            [data.email, data.github, data.blog].filter(Boolean).join('   ');
+    }
+</script>
 
 </html>
