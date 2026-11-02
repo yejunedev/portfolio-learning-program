@@ -5,12 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>포트폴리오 정보 입력</title>
   <link rel="stylesheet" href="./css/input.css">
-  <script src="./js/input.js" defer></script>
 </head>
 <body>
 
   <div class="container">
-
+    
+    <!-- 상단 타이틀 영역 -->
     <header class="header">
       <div class="back-wrap">
         <a href="start.html" class="btn-back">← 뒤로 가기</a>
@@ -22,6 +22,7 @@
 
     <main class="grid-layout">
 
+      <!-- ================= 좌측 칼럼 ================= -->
       <section class="col">
         
         <!-- 기본 정보 -->
@@ -75,8 +76,10 @@
 
       </section>
 
+      <!-- ================= 우측 칼럼 ================= -->
       <section class="col">
 
+        <!-- 기술 스택 -->
         <article class="card">
           <div class="card-header">
             <h2>기술 스택</h2>
@@ -98,7 +101,7 @@
           </div>
         </article>
 
-
+        <!-- 자격증 및 대외활동 -->
         <article class="card">
           <div class="card-header">
             <h2>자격증 및 대외활동</h2>
@@ -108,7 +111,7 @@
           <div id="certContainer" class="dynamic-container"></div>
         </article>
 
-
+        <!-- 소셜 및 연락처 링크 -->
         <article class="card">
           <div class="card-header">
             <h2>소셜 및 연락처 링크</h2>
@@ -132,7 +135,7 @@
       </section>
     </main>
 
-
+    <!-- 하단 액션 바 -->
     <div class="bottom-bar">
       <span>필수 항목을 모두 작성한 후 생성을 눌러주세요.</span>
       <div class="action-btns">
@@ -146,54 +149,182 @@
 
   <script>
     let uploadedPhotoData = "";
+    let tagsArray = [];
 
-    // 1. 프로필 사진 업로드 및 초기화
+    // --- 1. 기술 스택 (태그) 로직 ---
+    const tagListEl = document.getElementById("tagList");
+    const stackInput = document.getElementById("stackInput");
+    const stackCount = document.getElementById("stackCount");
+
+    function renderTags() {
+      tagListEl.innerHTML = tagsArray.map((tag, idx) => `
+        <span class="tag-badge" style="display:inline-flex; align-items:center; gap:6px; background:#eff6ff; color:#2563eb; padding:4px 10px; border-radius:14px; font-size:13px; margin:3px;">
+          ${tag}
+          <span onclick="removeTag(${idx})" style="cursor:pointer; font-weight:bold; font-size:14px;">✕</span>
+        </span>
+      `).join('');
+      stackCount.textContent = `${tagsArray.length}개 등록됨`;
+      autoSaveDraft();
+    }
+
+    function addTag(text) {
+      const clean = text.trim().replace(/^#/, '').replace(/^\+/, '').trim();
+      if (clean && !tagsArray.includes(clean)) {
+        tagsArray.push(clean);
+        renderTags();
+      }
+      stackInput.value = "";
+    }
+
+    window.removeTag = function(idx) {
+      tagsArray.splice(idx, 1);
+      renderTags();
+    };
+
+    stackInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        addTag(stackInput.value);
+      }
+    });
+
+    document.querySelectorAll(".chip-item").forEach(chip => {
+      chip.addEventListener("click", () => addTag(chip.textContent));
+    });
+
+
+    // --- 2. 프로젝트 동적 추가/삭제 ---
+    const projectContainer = document.getElementById("projectContainer");
+    const btnAddProject = document.getElementById("btnAddProject");
+
+    function createProjectItem(data = {}) {
+      const item = document.createElement("div");
+      item.className = "dynamic-item project-item";
+      item.style = "background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:15px; margin-bottom:12px; position:relative;";
+      item.innerHTML = `
+        <button type="button" class="btn-item-del" style="position:absolute; top:10px; right:12px; background:none; border:none; color:#94a3b8; font-size:16px; cursor:pointer;" onclick="this.parentElement.remove(); autoSaveDraft();">✕</button>
+        <div style="margin-bottom:8px;">
+          <label style="font-size:12px; font-weight:600; color:#475569;">프로젝트명</label>
+          <input type="text" class="proj-title" placeholder="프로젝트 이름" value="${data.title || ''}" style="width:100%; padding:8px; border:1px solid #cbd5e1; border-radius:6px; margin-top:4px; box-sizing:border-box;">
+        </div>
+        <div style="margin-bottom:8px;">
+          <label style="font-size:12px; font-weight:600; color:#475569;">진행 기간</label>
+          <input type="text" class="proj-period" placeholder="2026.03 - 2026.06" value="${data.period || ''}" style="width:100%; padding:8px; border:1px solid #cbd5e1; border-radius:6px; margin-top:4px; box-sizing:border-box;">
+        </div>
+        <div>
+          <label style="font-size:12px; font-weight:600; color:#475569;">간단한 설명</label>
+          <textarea class="proj-desc" placeholder="프로젝트 역할 및 소개" style="width:100%; height:60px; padding:8px; border:1px solid #cbd5e1; border-radius:6px; margin-top:4px; box-sizing:border-box; resize:none;">${data.desc || ''}</textarea>
+        </div>
+      `;
+
+      item.querySelectorAll("input, textarea").forEach(el => {
+        el.addEventListener("input", autoSaveDraft);
+      });
+
+      projectContainer.appendChild(item);
+    }
+
+    btnAddProject.addEventListener("click", () => {
+      createProjectItem();
+      autoSaveDraft();
+    });
+
+
+    // --- 3. 자격증 동적 추가/삭제 ---
+    const certContainer = document.getElementById("certContainer");
+    const btnAddCert = document.getElementById("btnAddCert");
+
+    function createCertItem(data = {}) {
+      const item = document.createElement("div");
+      item.className = "dynamic-item cert-item";
+      item.style = "background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:15px; margin-bottom:12px; position:relative;";
+      item.innerHTML = `
+        <button type="button" class="btn-item-del" style="position:absolute; top:10px; right:12px; background:none; border:none; color:#94a3b8; font-size:16px; cursor:pointer;" onclick="this.parentElement.remove(); autoSaveDraft();">✕</button>
+        <div style="margin-bottom:8px;">
+          <label style="font-size:12px; font-weight:600; color:#475569;">자격증 / 활동명</label>
+          <input type="text" class="cert-name" placeholder="정보처리기능사" value="${data.name || ''}" style="width:100%; padding:8px; border:1px solid #cbd5e1; border-radius:6px; margin-top:4px; box-sizing:border-box;">
+        </div>
+        <div>
+          <label style="font-size:12px; font-weight:600; color:#475569;">취득일자 / 활동기간</label>
+          <input type="text" class="cert-date" placeholder="2026.05" value="${data.date || ''}" style="width:100%; padding:8px; border:1px solid #cbd5e1; border-radius:6px; margin-top:4px; box-sizing:border-box;">
+        </div>
+      `;
+
+      item.querySelectorAll("input").forEach(el => {
+        el.addEventListener("input", autoSaveDraft);
+      });
+
+      certContainer.appendChild(item);
+    }
+
+    btnAddCert.addEventListener("click", () => {
+      createCertItem();
+      autoSaveDraft();
+    });
+
+
+    // --- 4. 프로필 사진 업로드 & 초기화 ---
     const photoInput = document.getElementById("photoInput");
     const btnUpload = document.getElementById("btnUpload");
     const btnResetPhoto = document.getElementById("btnResetPhoto");
     const profilePreview = document.getElementById("profilePreview");
 
-    if (btnUpload && photoInput) {
-      btnUpload.addEventListener("click", () => photoInput.click());
-    }
+    btnUpload.addEventListener("click", () => photoInput.click());
 
-    if (photoInput && profilePreview) {
-      photoInput.addEventListener("change", (e) => {
-        const file = e.target.files[0];
-        if (file) {
-          const reader = new FileReader();
-          reader.onload = (event) => {
-            uploadedPhotoData = event.target.result;
-            profilePreview.innerHTML = `<img src="${uploadedPhotoData}" alt="프로필" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">`;
-            autoSaveDraft();
-          };
-          reader.readAsDataURL(file);
+    photoInput.addEventListener("change", (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          uploadedPhotoData = event.target.result;
+          profilePreview.innerHTML = `<img src="${uploadedPhotoData}" alt="프로필" style="width:100%; height:100%; border-radius:50%; object-fit:cover;">`;
+          autoSaveDraft();
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    btnResetPhoto.addEventListener("click", () => {
+      uploadedPhotoData = "";
+      photoInput.value = "";
+      profilePreview.innerHTML = "👤";
+      autoSaveDraft();
+    });
+
+
+    // --- 5. 전체 입력 데이터 수집 ---
+    function getFormData() {
+      const nameVal = document.getElementById("name").value.trim();
+      const jobVal = document.getElementById("job").value.trim();
+      const introVal = document.getElementById("intro").value.trim();
+      const githubVal = document.getElementById("github").value.trim();
+      const emailVal = document.getElementById("email").value.trim();
+      const blogVal = document.getElementById("blog").value.trim();
+
+      // 프로젝트 목록 추출
+      const projects = [];
+      document.querySelectorAll(".project-item").forEach(item => {
+        const title = item.querySelector(".proj-title").value.trim();
+        const period = item.querySelector(".proj-period").value.trim();
+        const desc = item.querySelector(".proj-desc").value.trim();
+        if (title || period || desc) {
+          projects.push({ title, period, desc });
         }
       });
-    }
 
-    if (btnResetPhoto && profilePreview) {
-      btnResetPhoto.addEventListener("click", () => {
-        uploadedPhotoData = "";
-        if (photoInput) photoInput.value = "";
-        profilePreview.innerHTML = "👤";
-        autoSaveDraft();
+      // 자격증 목록 추출
+      const certs = [];
+      document.querySelectorAll(".cert-item").forEach(item => {
+        const name = item.querySelector(".cert-name").value.trim();
+        const date = item.querySelector(".cert-date").value.trim();
+        if (name || date) {
+          certs.push({ name, date });
+        }
       });
-    }
-
-    // 2. 현재 입력 폼의 모든 데이터 추출
-    function getFormData() {
-      const nameVal = document.getElementById("name") ? document.getElementById("name").value.trim() : "";
-      const jobVal = document.getElementById("job") ? document.getElementById("job").value.trim() : "";
-      const introVal = document.getElementById("intro") ? document.getElementById("intro").value.trim() : "";
-      const githubVal = document.getElementById("github") ? document.getElementById("github").value.trim() : "";
-      const emailVal = document.getElementById("email") ? document.getElementById("email").value.trim() : "";
-      const blogVal = document.getElementById("blog") ? document.getElementById("blog").value.trim() : "";
 
       const today = new Date();
       const dateString = `${today.getFullYear()}.${today.getMonth() + 1}.${today.getDate()}`;
 
-      // 기존 보관 데이터에서 태그, 프로젝트, 자격증 목록 유지
       const prevDraft = JSON.parse(localStorage.getItem("portfolio_draft_data")) || 
                         JSON.parse(localStorage.getItem("currentPortfolioDraft")) || {};
 
@@ -203,6 +334,9 @@
         job: jobVal,
         intro: introVal,
         photo: uploadedPhotoData || prevDraft.photo || "",
+        tags: tagsArray,
+        projects: projects,
+        certs: certs,
         github: githubVal,
         email: emailVal,
         blog: blogVal,
@@ -210,23 +344,21 @@
       };
     }
 
-    // 3. 입력 시 실시간 로컬스토리지 자동 보관 (나갔다 들어와도 유지)
+    // --- 6. 자동 저장 함수 ---
     function autoSaveDraft() {
       const data = getFormData();
       localStorage.setItem("portfolio_draft_data", JSON.stringify(data));
       localStorage.setItem("currentPortfolioDraft", JSON.stringify(data));
     }
 
-    // input, textarea 입력 시 자동 저장 이벤트 바인딩
-    const inputFields = ["name", "job", "intro", "github", "email", "blog"];
-    inputFields.forEach(id => {
+    // 기본 텍스트 인풋 자동 저장 이벤트 연결
+    ["name", "job", "intro", "github", "email", "blog"].forEach(id => {
       const el = document.getElementById(id);
-      if (el) {
-        el.addEventListener("input", autoSaveDraft);
-      }
+      if (el) el.addEventListener("input", autoSaveDraft);
     });
 
-    // 4. 페이지 진입 시 기존 저장 데이터 복원 (Restore)
+
+    // --- 7. 화면 최초 로드 시 데이터 복원 ---
     document.addEventListener("DOMContentLoaded", () => {
       const urlParams = new URLSearchParams(window.location.search);
       const projectIndex = urlParams.get("projectIndex");
@@ -234,78 +366,80 @@
       let savedData = null;
 
       if (projectIndex !== null) {
-        // 기존 프로젝트를 수정하러 들어온 경우
         const myProjects = JSON.parse(localStorage.getItem("myProjects")) || [];
         savedData = myProjects[projectIndex];
       } else {
-        // 작성 중이던 임시 저장 데이터가 있는 경우
         savedData = JSON.parse(localStorage.getItem("portfolio_draft_data")) || 
                     JSON.parse(localStorage.getItem("currentPortfolioDraft"));
       }
 
       if (savedData) {
-        if (document.getElementById("name") && savedData.name) document.getElementById("name").value = savedData.name;
-        if (document.getElementById("job") && savedData.job) document.getElementById("job").value = savedData.job;
-        if (document.getElementById("intro") && savedData.intro) document.getElementById("intro").value = savedData.intro;
-        if (document.getElementById("github") && savedData.github) document.getElementById("github").value = savedData.github;
-        if (document.getElementById("email") && savedData.email) document.getElementById("email").value = savedData.email;
-        if (document.getElementById("blog") && savedData.blog) document.getElementById("blog").value = savedData.blog;
+        if (savedData.name) document.getElementById("name").value = savedData.name;
+        if (savedData.job) document.getElementById("job").value = savedData.job;
+        if (savedData.intro) document.getElementById("intro").value = savedData.intro;
+        if (savedData.github) document.getElementById("github").value = savedData.github;
+        if (savedData.email) document.getElementById("email").value = savedData.email;
+        if (savedData.blog) document.getElementById("blog").value = savedData.blog;
 
         // 사진 복원
-        if (savedData.photo && profilePreview) {
+        if (savedData.photo) {
           uploadedPhotoData = savedData.photo;
-          profilePreview.innerHTML = `<img src="${uploadedPhotoData}" alt="프로필" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">`;
+          profilePreview.innerHTML = `<img src="${uploadedPhotoData}" alt="프로필" style="width:100%; height:100%; border-radius:50%; object-fit:cover;">`;
+        }
+
+        // 태그 복원
+        if (Array.isArray(savedData.tags)) {
+          tagsArray = [...savedData.tags];
+          renderTags();
+        }
+
+        // 프로젝트 복원
+        if (Array.isArray(savedData.projects)) {
+          projectContainer.innerHTML = "";
+          savedData.projects.forEach(p => createProjectItem(p));
+        }
+
+        // 자격증 복원
+        if (Array.isArray(savedData.certs)) {
+          certContainer.innerHTML = "";
+          savedData.certs.forEach(c => createCertItem(c));
         }
       }
     });
 
-    // 5. [전체 초기화] 버튼 클릭 시
-    const resetAllBtn = document.getElementById("btnResetAll");
-    if (resetAllBtn) {
-      resetAllBtn.addEventListener("click", () => {
-        if (confirm("작성 중인 모든 내용을 초기화하시겠습니까?")) {
-          localStorage.removeItem("portfolio_draft_data");
-          localStorage.removeItem("currentPortfolioDraft");
-          location.reload();
-        }
-      });
-    }
 
-    // 6. [임시 저장] 클릭: 마이페이지에 저장 후 이동
-    const saveBtn = document.getElementById("btnSaveStorage");
-    if (saveBtn) {
-      saveBtn.addEventListener("click", () => {
-        const data = getFormData();
-        if (!data.name && !data.job) {
-          alert("이름 또는 직무를 입력해주세요.");
-          return;
-        }
+    // --- 8. 하단 버튼 액션 ---
+    document.getElementById("btnResetAll").addEventListener("click", () => {
+      if (confirm("작성 중인 모든 내용을 초기화하시겠습니까?")) {
+        localStorage.removeItem("portfolio_draft_data");
+        localStorage.removeItem("currentPortfolioDraft");
+        location.reload();
+      }
+    });
 
-        const myProjects = JSON.parse(localStorage.getItem("myProjects")) || [];
-        myProjects.push(data);
-        localStorage.setItem("myProjects", JSON.stringify(myProjects));
+    document.getElementById("btnSaveStorage").addEventListener("click", () => {
+      const data = getFormData();
+      if (!data.name && !data.job) {
+        alert("이름 또는 직무를 입력해주세요.");
+        return;
+      }
+      const myProjects = JSON.parse(localStorage.getItem("myProjects")) || [];
+      myProjects.push(data);
+      localStorage.setItem("myProjects", JSON.stringify(myProjects));
+      alert("성공적으로 임시 저장되었습니다!");
+      location.href = "myPage.html";
+    });
 
-        alert("성공적으로 임시 저장되었습니다!");
-        location.href = "myPage.html";
-      });
-    }
-
-    const nextBtn = document.getElementById("btnNextStorage");
-    if (nextBtn) {
-      nextBtn.addEventListener("click", () => {
-        const data = getFormData();
-        if (!data.name && !data.job) {
-          alert("이름 또는 직무를 입력해주세요.");
-          return;
-        }
-
-        // 최신 입력 데이터 확정 저장 후 이동
-        localStorage.setItem("portfolio_draft_data", JSON.stringify(data));
-        localStorage.setItem("currentPortfolioDraft", JSON.stringify(data));
-
-        location.href = "template.html";
-      });
-    }
+    document.getElementById("btnNextStorage").addEventListener("click", () => {
+      const data = getFormData();
+      if (!data.name && !data.job) {
+        alert("이름 또는 직무를 입력해주세요.");
+        return;
+      }
+      localStorage.setItem("portfolio_draft_data", JSON.stringify(data));
+      localStorage.setItem("currentPortfolioDraft", JSON.stringify(data));
+      location.href = "template.html";
+    });
   </script>
 </body>
 </html>
