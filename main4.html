@@ -1,223 +1,210 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #FFD5D5;
+        }
+
+        .result-bg {
+            margin-left: 10px;
+            padding-left: 40px;
+            padding-top: 30px;
+            max-width: 1200px;
+        }
+
+        .top-section {
+            gap: 15px;
+            margin-bottom: 30px;
+            display: flex;
+        }
+
+        .profile-card {
+            background-color: #FFE1E1;
+            border: 1px solid #D01010;
+            flex: 3.5;
+            border-radius: 20px;
+            padding: 25px 30px 20px 30px;
+        }
+
+        .profile-img {
+            width: 130px;
+            height: 130px;
+            border-radius: 70%;
+            object-fit: cover;
+            margin-bottom: 12px;
+        }
+
+        .project-card {
+            background-color: #FFE1E1;
+            border: 1px solid #D01010;
+            flex: 2.5;
+            border-radius: 20px;
+            padding: 25px 30px 20px 25px;
+        }
+
+        .name {
+            font-size: 30px;
+            font-weight: bold;
+            margin-bottom: 4px;
+            color: #585555;
+        }
+
+        .job {
+            font-size: 20px;
+            color: #4E4D4D;
+            margin-bottom: 12px;
+        }
+
+        .divider {
+            border: none;
+            border-top: 1px solid #000000;
+            margin-bottom: 12px;
+        }
+
+        .intro {
+            font-size: 27px;
+            color: #4E4D4D;
+        }
+
+        .section-title {
+            font-size: 25px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+        }
+
+        .project-list {
+            list-style: none;
+            margin-bottom: 15px;
+        }
+
+        .project-list li {
+            font-size: 25px;
+            color: #333;
+            margin-bottom: 8px;
+            padding-left: 14px;
+            position: relative;
+        }
+
+        .project-list li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tag {
+            background: linear-gradient(135deg, #FFAFAF 0%, #FF8080 100%);
+            color: #4E4D4D;
+            padding: 10px 40px 10px 40px;
+            border-radius: 17px;
+            font-size: 20px;
+            margin-top: 150px;
+        }
+
+        .section {
+            margin-bottom: 20px;
+        }
+
+        .section .section-title {
+            color: #585555;
+            font-size: 25px;
+            margin-bottom: 12px;
+        }
+
+        .cert-tag {
+            display: block;
+            width: fit-content;
+            background: linear-gradient(135deg, #FFAFAF 0%, #FF8080 100%);
+            color: #4E4D4D;
+            padding: 10px 35px 10px 35px;
+            margin-top: 15px;
+            margin-right: 10px;
+            border-radius: 15px;
+            font-size: 20px;
+        }
+
+        .contact-list {
+            display: flex;
+            flex-direction: row;
+            gap: 80px;
+            align-items: center;
+            margin-top: 25px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 20px;
+            color: #4E4D4D;
+        }
+
+        .contact-icon {
+            width: 28px;
+            height: 28px;
+            object-fit: contain;
+        }
+
+        .action-buttons {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 100;
+        }
+
+        .action-buttons button {
+            padding: 12px 28px;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        .btn-pdf {
+            background-color: #3366FF;
+            color: #ffffff;
+        }
+
+        .btn-edit {
+            background-color: #eee;
+            color: #333;
+        }
+
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+
+            * {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+    </style>
 </head>
-<style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-
-    }
-
-    body {
-        margin: 0;
-        padding: 0;
-        background-color: #FFD5D5;
-    }
-
-    .result-bg {
-        margin-left: 10px;
-        padding-left: 40px;
-        padding-top: 30px;
-        max-width: 1200px;
-
-    }
-
-    .top-section {
-        gap: 15px;
-        margin-bottom: 30px;
-        display: flex;
-
-    }
-
-    .profile-card {
-        background-color: #FFE1E1;
-        border: 1px solid #D01010;
-        flex: 3.5;
-        border-radius: 20px;
-        padding: 25px 30px 20px 30px;
-
-    }
-
-    .profile-img {
-        width: 130px;
-        height: 130px;
-        border-radius: 70%;
-        object-fit: cover;
-        margin-bottom: 12px;
-
-    }
-
-    .project-card {
-        background-color: #FFE1E1;
-        border: 1px solid #D01010;
-        flex: 2.5;
-        border-radius: 20px;
-        padding: 25px 30px 20px 25px;
-
-
-    }
-
-    .name {
-        font-size: 30px;
-        font-weight: bold;
-        margin-bottom: 4px;
-        color: #585555;
-    }
-
-    .job {
-        font-size: 20px;
-        color: #4E4D4D;
-        margin-bottom: 12px;
-    }
-
-    .divider {
-        border: none;
-        border-top: 1px solid #000000;
-        margin-bottom: 12px;
-    }
-
-    .intro {
-        font-size: 27px;
-        color: #4E4D4D;
-    }
-
-    .section-title {
-        font-size: 25px;
-        font-weight: bold;
-        color: #333;
-        margin-bottom: 12px;
-        letter-spacing: 0.5px;
-    }
-
-    .project-list {
-        list-style: none;
-        margin-bottom: 15px;
-    }
-
-    .project-list li {
-        font-size: 25px;
-        color: #333;
-        margin-bottom: 8px;
-        padding-left: 14px;
-        position: relative;
-    }
-
-    .project-list li::before {
-        content: "•";
-        position: absolute;
-        left: 0;
-    }
-
-    .tags {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-    }
-
-    .tag {
-        background: linear-gradient(135deg, #FFAFAF 0%, #FF8080 100%);
-        color: #4E4D4D;
-        padding: 10px 40px 10px 40px;
-        border-radius: 17px;
-        font-size: 20px;
-        margin-top: 150px;
-
-
-    }
-
-
-    .section {
-        margin-bottom: 20px;
-    }
-
-    .section .section-title {
-        color: #585555;
-        font-size: 25px;
-        margin-bottom: 12px;
-    }
-
-    .cert-tag {
-        display: block;
-        width: fit-content;
-        background: linear-gradient(135deg, #FFAFAF 0%, #FF8080 100%);
-        color: #4E4D4D;
-        padding: 10px 35px 10px 35px;
-        margin-top: 15px;
-        margin-right: 10px;
-        border-radius: 15px;
-        font-size: 20px;
-
-    }
-
-    .contact-list {
-        display: flex;
-        flex-direction: row;
-        gap: 80px;
-        align-items: center;
-        margin-top: 25px;
-    }
-
-
-    .contact-item {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        font-size: 20px;
-        color: #4E4D4D;
-    }
-
-
-    .contact-icon {
-        width: 28px;
-        height: 28px;
-        object-fit: contain;
-    }
-    .action-buttons {
-     position: fixed;
-    bottom: 24px;
-    right: 24px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    z-index: 100;
-}
-
-.action-buttons button {
-    padding: 12px 28px;
-    border: none;
-    border-radius: 10px;
-    font-size: 15px;
-    cursor: pointer;
-}
-
-.btn-pdf {
-    background-color: #3366FF;
-    color: #ffffff;
-}
-
-.btn-edit {
-    background-color: #eee;
-    color: #333;
-}
-
-@media print {
-    .no-print {
-        display: none;
-    }
-
-
-    * {
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-    }
-}
-</style>
 
 <body>
     
@@ -225,9 +212,8 @@
 
         <div class="top-section">
 
-
             <div class="profile-card">
-                <img id="userPhoto"  src="" alt="프로필 사진" class="profile-img">
+                <img id="userPhoto" src="" alt="프로필 사진" class="profile-img">
                 <h2 class="name" id="userName"></h2>
                 <p class="job" id="userJob"></p>
                 <hr class="divider">
@@ -236,12 +222,11 @@
 
             <div class="project-card">
                 <h3 class="section-title">PROJECT</h3>
-                <ul class="project-list"  id="projectList"></ul>
-                <div class="tags"  id="skillList"> </div>
+                <ul class="project-list" id="projectList"></ul>
+                <div class="tags" id="skillList"></div>
             </div>
 
         </div>
-
 
         <div class="section">
             <h3 class="section-title">자격증 및 활동</h3>
@@ -264,45 +249,137 @@
         </div>
         <hr style="margin-top: 20px; margin-bottom: 12px; border: none; border-top: 1px solid #777;">
 
-
-         <div class="action-buttons no-print">
-            <button class="btn-edit" onclick="location.href='input.html'">수정하기</button>
+        <div class="action-buttons no-print">
+            <button class="btn-edit" id="btnEditPortfolio">수정하기</button>
             <button class="btn-pdf" onclick="window.print()">PDF로 저장</button>
         </div>
 
     </div>
+
+
+    <div id="action-btn-container" class="no-print" style="position: fixed; top: 20px; right: 20px; z-index: 9999; display: flex; gap: 10px;">
+        <button id="btn-save-project" style="padding: 10px 18px; background-color: #2563eb; color: #ffffff; border: none; border-radius: 6px; font-weight: 600; font-size: 14px; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+            💾 저장하기
+        </button>
+        <button id="btn-go-home" style="padding: 10px 18px; background-color: #475569; color: #ffffff; border: none; border-radius: 6px; font-weight: 600; font-size: 14px; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+            🏠 홈으로
+        </button>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+          
+            const urlParams = new URLSearchParams(window.location.search);
+            const projectIndex = urlParams.get("projectIndex");
+
+            let data = null;
+
+            if (projectIndex !== null) {
+                // 마이페이지에서 상세보기를 눌러서 들어온 경우
+                const savedProjects = JSON.parse(localStorage.getItem("myProjects")) || [];
+                data = savedProjects[projectIndex];
+            } else {
+                // 작성 직후 테마 확인 단계로 넘어온 경우
+                data = JSON.parse(localStorage.getItem("portfolio_draft_data")) || JSON.parse(localStorage.getItem("currentPortfolioDraft"));
+            }
+
+            if (data) {
+                if (document.getElementById('userName')) document.getElementById('userName').textContent = data.name || '';
+                if (document.getElementById('userJob')) document.getElementById('userJob').textContent = data.job || '';
+                if (document.getElementById('userIntro')) document.getElementById('userIntro').textContent = data.intro || '';
+
+                if (data.photo && document.getElementById('userPhoto')) {
+                    document.getElementById('userPhoto').src = data.photo;
+                }
+
+                if (document.getElementById('projectList')) {
+                    document.getElementById('projectList').innerHTML = (data.projects || [])
+                        .filter(p => p && p.title)
+                        .map(p => `<li>${p.title}</li>`)
+                        .join('');
+                }
+
+                if (document.getElementById('skillList')) {
+                    document.getElementById('skillList').innerHTML = (data.tags || [])
+                        .map(tag => `<span class="tag">${tag}</span>`)
+                        .join('');
+                }
+
+                if (document.getElementById('certList')) {
+                    document.getElementById('certList').innerHTML = (data.certs || [])
+                        .filter(c => c && c.name)
+                        .map(c => `<span class="cert-tag">${c.name}</span>`)
+                        .join('');
+                }
+
+                if (document.getElementById('userEmail')) document.getElementById('userEmail').textContent = data.email || '';
+                if (document.getElementById('userGithub')) document.getElementById('userGithub').textContent = data.github || '';
+                if (document.getElementById('userBlog')) document.getElementById('userBlog').textContent = data.blog || '';
+            }
+
+            const editBtn = document.getElementById("btnEditPortfolio");
+            if (editBtn) {
+                editBtn.addEventListener("click", () => {
+                    location.href = projectIndex !== null ? `input.html?projectIndex=${projectIndex}` : 'input.html';
+                });
+            }
+        });
+
+        (function() {
+            const currentTheme = "테마 4"; 
+
+            function saveToMyProjects(showAlert = true) {
+                const urlParams = new URLSearchParams(window.location.search);
+                const projectIndex = urlParams.get("projectIndex");
+
+                if (projectIndex !== null) {
+                    return true;
+                }
+
+                const draft = JSON.parse(localStorage.getItem("portfolio_draft_data")) || JSON.parse(localStorage.getItem("currentPortfolioDraft"));
+
+                if (!draft) {
+                    alert("작성된 포트폴리오 데이터가 없습니다. 정보 입력 페이지로 이동합니다.");
+                    location.href = "input.html";
+                    return false;
+                }
+
+                draft.theme = currentTheme;
+
+                const myProjects = JSON.parse(localStorage.getItem("myProjects")) || [];
+                myProjects.push(draft);
+                localStorage.setItem("myProjects", JSON.stringify(myProjects));
+
+                localStorage.removeItem("portfolio_draft_data");
+                localStorage.removeItem("currentPortfolioDraft");
+
+                if (showAlert) {
+                    alert("포트폴리오가 마이페이지에 성공적으로 저장되었습니다!");
+                }
+                return true;
+            }
+
+            const saveBtn = document.getElementById("btn-save-project");
+            if (saveBtn) {
+                saveBtn.addEventListener("click", () => {
+                    if (saveToMyProjects(true)) {
+                        location.href = "myPage.html";
+                    }
+                });
+            }
+
+            const homeBtn = document.getElementById("btn-go-home");
+            if (homeBtn) {
+                homeBtn.addEventListener("click", () => {
+                    const draft = localStorage.getItem("portfolio_draft_data") || localStorage.getItem("currentPortfolioDraft");
+                    if (draft) {
+                        saveToMyProjects(false);
+                    }
+                    location.href = "myPage.html";
+                });
+            }
+        })();
+    </script>
 </body>
-
-<script>
-    const data = JSON.parse(localStorage.getItem('portfolio_draft_data'));
-
-    if (data) {
-        document.getElementById('userName').textContent = data.name;
-        document.getElementById('userJob').textContent = data.job;
-        document.getElementById('userIntro').textContent = data.intro;
-
-        if (data.photo) {
-            document.getElementById('userPhoto').src = data.photo;
-        }
-
-        document.getElementById('projectList').innerHTML = (data.projects || [])
-            .filter(p => p.title)
-            .map(p => `<li>${p.title}</li>`)
-            .join('');
-
-        document.getElementById('skillList').innerHTML = (data.tags || [])
-            .map(tag => `<span class="tag">${tag}</span>`)
-            .join('');
-
-        document.getElementById('certList').innerHTML = (data.certs || [])
-            .filter(c => c.name)
-            .map(c => `<span class="cert-tag">${c.name}</span>`)
-            .join('');
-
-        document.getElementById('userEmail').textContent = data.email || '';
-        document.getElementById('userGithub').textContent = data.github || '';
-        document.getElementById('userBlog').textContent = data.blog || '';
-    }
-</script>
 
 </html>

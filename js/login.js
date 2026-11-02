@@ -3,7 +3,9 @@ import {
   getAuth, 
   createUserWithEmailAndPassword, 
   signInWithEmailAndPassword, 
-  signOut 
+  signOut,
+  GoogleAuthProvider,
+  signInWithPopup
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
 const firebaseConfig = {
@@ -25,7 +27,6 @@ const messageEl = document.getElementById("message");
 const btnLogin = document.getElementById("btn-login");
 const btnSignup = document.getElementById("btn-signup");
 
-// 회원가입 완료 알림
 if (btnSignup) {
   btnSignup.addEventListener("click", async () => {
     const email = emailInput.value.trim();
@@ -34,13 +35,12 @@ if (btnSignup) {
 
     try {
       await createUserWithEmailAndPassword(auth, email, password);
-      // Firebase 자동 로그인 상태 즉시 해제
+
       await signOut(auth);
 
       passwordInput.value = "";
-      showMessage(""); // 하단 문구 초기화
+      showMessage("");
 
-      // 로그인 환료 팝업창
       alert("회원가입이 완료되었습니다!\n비밀번호를 입력하고 로그인해 주세요.");
       
     } catch (error) {
@@ -74,4 +74,18 @@ function handleAuthError(code) {
   else if (code === "auth/weak-password") showMessage("비밀번호는 최소 6자 이상이어야 합니다.");
   else if (code === "auth/invalid-credential") showMessage("계정 정보가 일치하지 않습니다.");
   else showMessage(`오류 발생: ${code}`);
+}
+
+const btnGoogle = document.getElementById("btn-google");
+
+if (btnGoogle) {
+  btnGoogle.addEventListener("click", async () => {
+    const provider = new GoogleAuthProvider();
+    try {
+      await signInWithPopup(auth, provider);
+      window.location.href = "myPage.html"; // 구글 로그인 성공 시 마이페이지로 이동
+    } catch (error) {
+      handleAuthError(error.code);
+    }
+  });
 }

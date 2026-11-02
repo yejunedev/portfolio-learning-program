@@ -1,101 +1,121 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>시작 화면</title>
+    <title>시작 화면 - FolLearn</title>
+
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+
     <style>
         * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
 
-        body {
-            overflow: hidden;
+        html, body {
             margin: 0;
-            padding: 0;
+            height: 100vh;
+            overflow: hidden;
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+            letter-spacing: -0.02em;
         }
 
         .hero-bg {
-
             background:
-
                 radial-gradient(circle at 85% 8%, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.3) 12%, transparent 26%),
-
                 radial-gradient(circle at 95% 20%, rgba(150, 165, 255, 0.65) 0%, rgba(150, 165, 255, 0.35) 18%, transparent 34%),
-
                 radial-gradient(circle at 78% 5%, rgba(125, 145, 255, 0.6) 0%, rgba(125, 145, 255, 0.3) 16%, transparent 30%),
-
                 radial-gradient(circle at 92% 35%, rgba(135, 155, 255, 0.55) 0%, transparent 28%),
-
                 radial-gradient(circle at 8% 78%, rgba(156, 169, 251, 0.7) 0%, rgba(165, 177, 248, 0.35) 18%, transparent 34%),
-
                 radial-gradient(circle at 20% 92%, rgba(183, 192, 241, 0.65) 0%, rgba(150, 165, 255, 0.3) 16%, transparent 30%),
-
                 radial-gradient(circle at 2% 95%, rgba(197, 201, 229, 0.55) 0%, transparent 26%),
-
                 radial-gradient(circle at 15% 65%, rgba(135, 155, 255, 0.5) 0%, transparent 24%),
-
                 url('./img/시작배경1.svg') center / cover no-repeat,
-
                 linear-gradient(135deg, #eef1ff 0%, #f5f7ff 100%);
 
-
             min-height: 100vh;
+            position: relative; 
             display: flex;
-            text-align: center;
+            justify-content: center;
             align-items: center;
-            flex-direction: column;
-            justify-content: flex-start;
         }
 
+        
+        .top-logo {
+            position: absolute;
+            top: 40px;
+            left: 50px;
+            font-size: 24px;
+            font-weight: 800;
+            color: #0f172a;
+            text-decoration: none;
+            letter-spacing: -0.03em;
+        }
+
+       
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .hero-content h1 {
+            font-size: 36px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 12px;
+        }
+
+        /*부제목 스타일*/
+        #name {
+            font-size: 18px;
+            font-weight: 400;
+            margin-bottom: 50px;
+            color: #475569;
+        }
+
+    
         .hero-bt {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 30px;
-        }
-
-        .hero-content {
-            padding-top: 200px;
             gap: 20px;
-
         }
 
-        
+
         button {
-        border: none;
-        color: #fff;
-        background-image: linear-gradient(30deg, #0400ff, #4ce3f7);
-        border-radius: 20px;
-        background-size: 100% auto;
-        font-family: inherit;
-        font-size: 17px;
-        padding: 0.6em 1.5em;
-        width: 350px;
-        height: 70px;
+            border: none;
+            color: #fff;
+            background-image: linear-gradient(30deg, #0400ff, #4ce3f7);
+            border-radius: 20px;
+            background-size: 100% auto;
+            font-family: inherit;
+            font-size: 17px;
+            font-weight: 600;
+            padding: 0.6em 1.5em;
+            width: 350px;
+            height: 65px;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
         button:hover {
-        background-position: right center;
-        background-size: 200% auto;
-        -webkit-animation: pulse 2s infinite;
-        animation: pulse512 1.5s infinite;
-        }
-
-
-        #name {
-            font-weight: normal;
-            margin-bottom: 85px;
-            margin-top: 70px;
-            color: #4F4F4F;
+            background-position: right center;
+            background-size: 200% auto;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(4, 0, 255, 0.25);
         }
     </style>
 </head>
 
 <body>
     <div class="hero-bg">
+        <a href="#" class="top-logo">FolLearn</a>
+
         <div class="hero-content">
             <h1>포트폴리오 학습 프로그램</h1>
             <h1 id="name">정보를 입력하고 나만의 포트폴리오를 완성해보세요!</h1>
@@ -106,10 +126,6 @@
             </div>
         </div>
     </div>
-
-    <script>
-
-    </script>
 </body>
 
 </html>

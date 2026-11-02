@@ -1,167 +1,167 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        img {
+            width: 150px;
+            height: 150px;
+            padding: 20px;
+            object-fit: cover;
+        }
+
+        .card {
+            display: flex;
+            align-items: stretch;
+            min-height: 729px;
+        }
+
+        .left-panel {
+            background: linear-gradient(135deg, #FFFEE4 0%, #FAFF52 100%);
+            color: #AB9B9B;
+            display: flex;
+            flex-direction: column;
+            width: 350px;
+            padding: 20px;
+            padding-bottom: 20px;
+            flex-shrink: 0;
+        }
+
+        .left-panel h1 {
+            padding-left: 25px;
+        }
+
+        .left-panel p {
+            padding-left: 25px;
+            padding-top: 7px;
+            font-size: 20px;
+        }
+        
+        .right-panel {
+            flex: 1;
+            padding: 28px 24px;
+            margin-left: 30px;
+        }
+
+        .right-panel p {
+            color: #A0A0A0;
+            font-size: 25px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            margin-top: 10px;
+            margin-bottom: 15px;
+        }
+
+        .label-tag {
+            display: block;
+            font-size: 20px;
+            justify-content: center;
+            background-color: #FFFFFF;
+            color: #AB9B9B;
+            padding: 6px 22px;
+            border-radius: 12px;
+            margin-top: 25px;
+            margin-bottom: 6px;
+            margin-left: 25px;
+            width: fit-content;
+        }
+
+        .label-tag-small {
+            display: block;
+            font-size: 20px;
+            justify-content: center;
+            background-color: #FFFFFF;
+            color: #AB9B9B;
+            padding: 6px 22px;
+            border-radius: 15px;
+            margin-top: 16px;
+            margin-bottom: 6px;
+            margin-left: 25px;
+            width: fit-content;
+        }
+
+        h2 {
+            color: #575353;
+            font-weight: 440;
+            font-size: 25px; 
+        }
+
+        .profile {
+            display: block;
+            width: fit-content;
+            background-color: #FBFF95;
+            color: #A0A0A0;
+            font-size: 25px;
+            padding: 15px 30px;
+            border-radius: 17px;
+            margin-top: 20px;
+        }
+
+        .action-buttons {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 100;
+        }
+
+        .action-buttons button {
+            padding: 12px 28px;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        .btn-pdf {
+            background-color: #3366FF;
+            color: #ffffff;
+        }
+
+        .btn-edit {
+            background-color: #eee;
+            color: #333;
+        }
+
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+
+            * {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+    </style>
 </head>
-<style>
-    * {
-        margin: 0;
-        padding: 0;
-
-    }
-
-    body {
-        margin: 0;
-        padding: 0;
-    }
-    img {
-        width: 150px;
-        height: 150px;
-        padding-left: 20px;
-        padding-top: 20px;
-        padding-bottom: 20px;
-    }
-    .card {
-        display: flex;
-        align-items: stretch;
-        min-height: 729px;
-    }
-    .left-panel {
-        background: linear-gradient(135deg, #FFFEE4 0%, #FAFF52 100%);
-        color: #AB9B9B;
-        display: flex;
-        flex-direction: column;
-        width: 350px;
-        padding: 20px;
-        padding-bottom: 20px;
-    }
-    .left-panel h1{
-        padding-left: 25px;
-    }
-    .left-panel p{
-        padding-left: 25px;
-        padding-top: 7px;
-        font-size: 20px;
-    }
-    
-    .right-panel {
-        flex: 1;
-        padding: 28px 24px;
-        margin-left: 30px;
-    }
-    .right-panel p{
-        color: #A0A0A0;
-        font-size: 25px;
-        padding-top: 10px;
-        padding-bottom: 10px;
-        margin-top: 10px;
-        margin-bottom: 15px;
-    }
-
-
-    .label-tag {
-    display: block;
-    font-size: 20px;
-    justify-content: center;
-    width: 100%;
-    background-color: #FFFFFF;
-    color: #AB9B9B;
-    padding-left: 22px;
-    border-radius: 12px;
-    margin-top: 25px;
-    margin-bottom: 6px;
-    box-sizing: border-box;
-    margin-left: 25px;
-    width: calc(100% - 225px);
-}
-
-.label-tag-small {
-    display: block;
-    font-size: 20px;
-    justify-content: center;
-    width: 100%;
-    background-color: #FFFFFF;
-    color: #AB9B9B;
-    padding-left: 22px;
-    border-radius: 15px;
-    margin-top: 16px;
-    margin-bottom: 6px;
-    box-sizing: border-box;
-    margin-left: 25px;
-    width: calc(100% - 250px);
-}
-h2 {
-    color: #575353;
-    font-weight: 440;
-    font-size: 25px; 
-}
-.profile {
-    display: block;
-    width: fit-content;
-    background-color: #FBFF95;
-    color: #A0A0A0;
-    font-size: 25px;
-    padding: 15px 30px 15px 30px;
-    border-radius: 17px;
-    margin-top: 30px;
-}
-.action-buttons {
-    position: fixed;
-    bottom: 24px;
-    right: 24px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    z-index: 100;
-}
-
-.action-buttons button {
-    padding: 12px 28px;
-    border: none;
-    border-radius: 10px;
-    font-size: 15px;
-    cursor: pointer;
-}
-
-.btn-pdf {
-    background-color: #3366FF;
-    color: #ffffff;
-}
-
-.btn-edit {
-    background-color: #eee;
-    color: #333;
-}
-
-@media print {
-    .no-print {
-        display: none;
-    }
-
-
-    * {
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-    }
-}
-
-</style>
 
 <body>
     
     <div class="card">
         <div class="left-panel">
-            <img id="userPhoto"  src="" alt="프로필">
+            <img id="userPhoto" src="" alt="프로필">
             <h1 id="userName"></h1>
             <p id="userJob"></p>
 
-
             <span class="label-tag">기술 스택</span>
             <div id="skillList"></div>
-
 
             <span class="label-tag-small">자격증</span>
             <div id="certList"></div>
@@ -176,39 +176,138 @@ h2 {
     </div>
 
     <div class="action-buttons no-print">
-        <button class="btn-edit" onclick="location.href='input.html'">수정하기</button>
+        <button class="btn-edit" id="btnEditPortfolio">수정하기</button>
         <button class="btn-pdf" onclick="window.print()">PDF로 저장</button>
     </div>
 
-
+    <div id="action-btn-container" class="no-print" style="position: fixed; top: 20px; right: 20px; z-index: 9999; display: flex; gap: 10px;">
+        <button id="btn-save-project" style="padding: 10px 18px; background-color: #2563eb; color: #ffffff; border: none; border-radius: 6px; font-weight: 600; font-size: 14px; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+            💾 저장하기
+        </button>
+        <button id="btn-go-home" style="padding: 10px 18px; background-color: #475569; color: #ffffff; border: none; border-radius: 6px; font-weight: 600; font-size: 14px; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+            🏠 홈으로
+        </button>
+    </div>
 
     <script>
-    const data = JSON.parse(localStorage.getItem('portfolio_draft_data'));
+        document.addEventListener("DOMContentLoaded", () => {
+            
+            const urlParams = new URLSearchParams(window.location.search);
+            const projectIndex = urlParams.get("projectIndex");
 
-    if (data) {
-        document.getElementById('userName').textContent = data.name;
-        document.getElementById('userJob').textContent = data.job;
-        document.getElementById('userIntro').textContent = data.intro;
+            let data = null;
 
-        if (data.photo) {
-            document.getElementById('userPhoto').src = data.photo;
-        }
+            if (projectIndex !== null) {
+                
+                const savedProjects = JSON.parse(localStorage.getItem("myProjects")) || [];
+                data = savedProjects[projectIndex];
+            } else {
+                
+                data = JSON.parse(localStorage.getItem("portfolio_draft_data")) || JSON.parse(localStorage.getItem("currentPortfolioDraft"));
+            }
 
-        document.getElementById('skillList').innerHTML = (data.tags || [])
-            .map(tag => `<p>${tag}</p>`)
-            .join('');
+            if (data) {
+                if (document.getElementById('userName')) document.getElementById('userName').textContent = data.name || '';
+                if (document.getElementById('userJob')) document.getElementById('userJob').textContent = data.job || '';
+                if (document.getElementById('userIntro')) document.getElementById('userIntro').textContent = data.intro || '';
 
-        document.getElementById('certList').innerHTML = (data.certs || [])
-            .filter(c => c.name)
-            .map(c => `<p>${c.name}</p>`)
-            .join('');
+                if (data.photo && document.getElementById('userPhoto')) {
+                    document.getElementById('userPhoto').src = data.photo;
+                }
 
-        document.getElementById('projectList').innerHTML = (data.projects || [])
-            .filter(p => p.title)
-            .map(p => `<div class="profile">${p.title}</div>`)
-            .join('');
-    }
-</script>
+                if (document.getElementById('skillList')) {
+                    document.getElementById('skillList').innerHTML = (data.tags || [])
+                        .map(tag => `<p style="padding-left: 25px; font-size: 16px; margin-top: 4px;">• ${tag}</p>`)
+                        .join('');
+                }
+
+                if (document.getElementById('certList')) {
+                    document.getElementById('certList').innerHTML = (data.certs || [])
+                        .filter(c => c && c.name)
+                        .map(c => `<p style="padding-left: 25px; font-size: 16px; margin-top: 4px;">• ${c.name}</p>`)
+                        .join('');
+                }
+
+                if (document.getElementById('projectList')) {
+                    document.getElementById('projectList').innerHTML = (data.projects || [])
+                        .filter(p => p && p.title)
+                        .map(p => `
+                            <div class="profile">
+                                <strong>${p.title}</strong>
+                                ${p.period ? `<span style="font-size: 15px; margin-left: 10px;">(${p.period})</span>` : ''}
+                                ${p.desc ? `<p style="font-size: 16px; color: #666; margin-top: 6px;">${p.desc}</p>` : ''}
+                            </div>
+                        `)
+                        .join('');
+                }
+            }
+
+   
+            const editBtn = document.getElementById("btnEditPortfolio");
+            if (editBtn) {
+                editBtn.addEventListener("click", () => {
+                    location.href = projectIndex !== null ? `input.html?projectIndex=${projectIndex}` : 'input.html';
+                });
+            }
+        });
+
+       
+        (function() {
+            const currentTheme = "테마 3"; 
+
+            function saveToMyProjects(showAlert = true) {
+                const urlParams = new URLSearchParams(window.location.search);
+                const projectIndex = urlParams.get("projectIndex");
+
+          
+                if (projectIndex !== null) {
+                    return true;
+                }
+
+                const draft = JSON.parse(localStorage.getItem("portfolio_draft_data")) || JSON.parse(localStorage.getItem("currentPortfolioDraft"));
+
+                if (!draft) {
+                    alert("작성된 포트폴리오 데이터가 없습니다. 정보 입력 페이지로 이동합니다.");
+                    location.href = "input.html";
+                    return false;
+                }
+
+                draft.theme = currentTheme;
+
+                const myProjects = JSON.parse(localStorage.getItem("myProjects")) || [];
+                myProjects.push(draft);
+                localStorage.setItem("myProjects", JSON.stringify(myProjects));
+
+                localStorage.removeItem("portfolio_draft_data");
+                localStorage.removeItem("currentPortfolioDraft");
+
+                if (showAlert) {
+                    alert("포트폴리오가 마이페이지에 성공적으로 저장되었습니다!");
+                }
+                return true;
+            }
+
+            const saveBtn = document.getElementById("btn-save-project");
+            if (saveBtn) {
+                saveBtn.addEventListener("click", () => {
+                    if (saveToMyProjects(true)) {
+                        location.href = "myPage.html";
+                    }
+                });
+            }
+
+            const homeBtn = document.getElementById("btn-go-home");
+            if (homeBtn) {
+                homeBtn.addEventListener("click", () => {
+                    const draft = localStorage.getItem("portfolio_draft_data") || localStorage.getItem("currentPortfolioDraft");
+                    if (draft) {
+                        saveToMyProjects(false);
+                    }
+                    location.href = "myPage.html";
+                });
+            }
+        })();
+    </script>
 </body>
 
 </html>

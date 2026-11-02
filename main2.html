@@ -1,116 +1,116 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            font-size: 63px;
+        }
+
+        .game {
+            background-color: #92D27F;
+            padding: 40px 50px;
+        }
+
+        #job {
+            display: inline-block;
+            background: linear-gradient(180deg, #DCFFD7 0%, #089D12 100%);
+            border-radius: 20px;
+            padding: 8px 20px;
+            margin-top: 10px;
+            font-size: 18px;
+        }
+
+        .menu {
+            margin-left: 40px;
+            padding-top: 25px;
+            font-size: 20px;
+        }
+
+        #card {
+            display: flex;
+            gap: 12px;
+            margin-top: 18px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        #card p {
+            background-color: #6BC450;
+            color: #000000;
+            padding: 10px 20px;
+            border-radius: 13px;
+            font-size: 15px;
+        }
+
+        #pro {
+            color: #8d8989;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        #opop p {
+            margin-bottom: 20px;
+            padding-top: 5px;
+        }
+
+        hr {
+            margin-bottom: 20px;
+            width: 97%;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 24px;
+            margin-bottom: 40px;
+        }
+
+        .action-buttons button {
+            padding: 12px 28px;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        .btn-pdf {
+            background-color: #3366FF;
+            color: #fff;
+        }
+
+        .btn-edit {
+            background-color: #eee;
+            color: #333;
+        }
+
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+
+            * {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+    </style>
 </head>
-<style>
-    * {
-        margin: 0;
-        padding: 0;
-    }
-
-    body {
-        margin: 0;
-        padding: 0;
-    }
-
-    h1 {
-        font-size: 63px;
-    }
-
-    .game {
-        background-color: #92D27F;
-        padding: 40px 50px
-    }
-
-    #job {
-        display: inline-block;
-        background: linear-gradient(180deg, #DCFFD7 0%, #089D12 100%);
-        border-radius: 20px;
-        padding: 8px 20px;
-        margin-top: 10px;
-        font-size: 18px;
-    }
-
-    .menu {
-        margin-left: 40px;
-        padding-top: 25px;
-        font-size: 20px;
-    }
-
-
-    #card {
-        display: flex;
-        gap: 12px;
-        margin-top: 18px;
-        margin-bottom: 25px;
-    }
-
-    #card p {
-        background-color: #6BC450;
-        color: #000000;
-        padding: 10px 20px;
-        border-radius: 13px;
-        font-size: 15px;
-    }
-
-    #pro {
-        color: #8d8989;
-        font-weight: bold;
-        margin-bottom: 20px;
-    }
-
-    #opop p{
-        margin-bottom: 20px;
-        padding-top: 5px;
-    }
-    hr {
-        margin-bottom: 20px;
-        width: 97%;
-
-    }
-    .action-buttons {
-    display: flex;
-    gap: 12px;
-    justify-content: center;
-    margin-top: 24px;
-}
-
-.action-buttons button {
-    padding: 12px 28px;
-    border: none;
-    border-radius: 10px;
-    font-size: 15px;
-    cursor: pointer;
-}
-
-.btn-pdf {
-    background-color: #3366FF;
-    color: #fff;
-}
-
-.btn-edit {
-    background-color: #eee;
-    color: #333;
-}
-
-@media print {
-    .no-print {
-        display: none;
-    }
-
-
-    * {
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-    }
-}
-</style>
-
-
 
 <body>
     
@@ -132,38 +132,132 @@
 
         <div id="opop">
             <div id="projectList"></div>
-            <p id="userContact" style="word-spacing: 70px; color: #585555;"></p>
+            <p id="userContact" style="word-spacing: 40px; color: #585555; word-break: break-all;"></p>
             <hr style="border: none; border-top: 1px solid #C0BEBE;">
         </div>
     </div>
 
-
     <div class="action-buttons no-print">
-        <button class="btn-edit" onclick="location.href='input.html'">수정하기</button>
+        <button class="btn-edit" id="btnEditPortfolio">수정하기</button>
         <button class="btn-pdf" onclick="window.print()">PDF로 저장</button>
     </div>
+
+ 
+    <div id="action-btn-container" class="no-print" style="position: fixed; top: 20px; right: 20px; z-index: 9999; display: flex; gap: 10px;">
+        <button id="btn-save-project" style="padding: 10px 18px; background-color: #2563eb; color: #ffffff; border: none; border-radius: 6px; font-weight: 600; font-size: 14px; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+            💾 저장하기
+        </button>
+        <button id="btn-go-home" style="padding: 10px 18px; background-color: #475569; color: #ffffff; border: none; border-radius: 6px; font-weight: 600; font-size: 14px; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+            🏠 홈으로
+        </button>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            
+            const urlParams = new URLSearchParams(window.location.search);
+            const projectIndex = urlParams.get("projectIndex");
+
+            let data = null;
+
+            if (projectIndex !== null) {
+                // 마이페이지에서 상세보기를 눌러서 들어온 경우
+                const savedProjects = JSON.parse(localStorage.getItem("myProjects")) || [];
+                data = savedProjects[projectIndex];
+            } else {
+                // 작성 직후 테마 확인 단계로 넘어온 경우
+                data = JSON.parse(localStorage.getItem("portfolio_draft_data")) || JSON.parse(localStorage.getItem("currentPortfolioDraft"));
+            }
+
+            if (data) {
+                if (document.getElementById('userName')) document.getElementById('userName').textContent = data.name || '';
+                if (document.getElementById('userJob')) document.getElementById('userJob').textContent = data.job || '';
+                if (document.getElementById('userIntro')) document.getElementById('userIntro').textContent = data.intro || '';
+
+                if (document.getElementById('card')) {
+                    document.getElementById('card').innerHTML = (data.tags || [])
+                        .map(tag => `<p>${tag}</p>`)
+                        .join('');
+                }
+
+                if (document.getElementById('projectList')) {
+                    document.getElementById('projectList').innerHTML = (data.projects || [])
+                        .filter(p => p && p.title)
+                        .map((p, i, arr) => `<p><strong>${p.title}</strong> (${p.period || ''})<br><span style="font-size:14px; color:#555;">${p.desc || ''}</span></p>${i < arr.length - 1 ? '<hr style="border:none; border-top:1px solid #C0BEBE;">' : ''}`)
+                        .join('');
+                }
+
+                if (document.getElementById('userContact')) {
+                    document.getElementById('userContact').textContent =
+                        [data.email, data.github, data.blog].filter(Boolean).join('   ');
+                }
+            }
+
+            const editBtn = document.getElementById("btnEditPortfolio");
+            if (editBtn) {
+                editBtn.addEventListener("click", () => {
+                    location.href = projectIndex !== null ? `input.html?projectIndex=${projectIndex}` : 'input.html';
+                });
+            }
+        });
+
+        // 3. 저장 및 홈 이동 로직
+        (function() {
+            const currentTheme = "테마 2"; 
+
+            function saveToMyProjects(showAlert = true) {
+                const urlParams = new URLSearchParams(window.location.search);
+                const projectIndex = urlParams.get("projectIndex");
+
+                // 마이페이지에서 열람 목적인 경우 새로 저장하지 않음
+                if (projectIndex !== null) {
+                    return true;
+                }
+
+                const draft = JSON.parse(localStorage.getItem("portfolio_draft_data")) || JSON.parse(localStorage.getItem("currentPortfolioDraft"));
+
+                if (!draft) {
+                    alert("작성된 포트폴리오 데이터가 없습니다. 정보 입력 페이지로 이동합니다.");
+                    location.href = "input.html";
+                    return false;
+                }
+
+                draft.theme = currentTheme;
+
+                const myProjects = JSON.parse(localStorage.getItem("myProjects")) || [];
+                myProjects.push(draft);
+                localStorage.setItem("myProjects", JSON.stringify(myProjects));
+
+                localStorage.removeItem("portfolio_draft_data");
+                localStorage.removeItem("currentPortfolioDraft");
+
+                if (showAlert) {
+                    alert("포트폴리오가 마이페이지에 성공적으로 저장되었습니다!");
+                }
+                return true;
+            }
+
+            const saveBtn = document.getElementById("btn-save-project");
+            if (saveBtn) {
+                saveBtn.addEventListener("click", () => {
+                    if (saveToMyProjects(true)) {
+                        location.href = "myPage.html";
+                    }
+                });
+            }
+
+            const homeBtn = document.getElementById("btn-go-home");
+            if (homeBtn) {
+                homeBtn.addEventListener("click", () => {
+                    const draft = localStorage.getItem("portfolio_draft_data") || localStorage.getItem("currentPortfolioDraft");
+                    if (draft) {
+                        saveToMyProjects(false);
+                    }
+                    location.href = "myPage.html";
+                });
+            }
+        })();
+    </script>
 </body>
-
-<script>
-    const data = JSON.parse(localStorage.getItem('portfolio_draft_data'));
-
-    if (data) {
-        document.getElementById('userName').textContent = data.name;
-        document.getElementById('userJob').textContent = data.job;
-        document.getElementById('userIntro').textContent = data.intro;
-
-        document.getElementById('card').innerHTML = (data.tags || [])
-            .map(tag => `<p>${tag}</p>`)
-            .join('');
-
-        document.getElementById('projectList').innerHTML = (data.projects || [])
-            .filter(p => p.title)
-            .map((p, i, arr) => `<p>${p.title}</p>${i < arr.length - 1 ? '<hr>' : ''}`)
-            .join('');
-
-        document.getElementById('userContact').textContent =
-            [data.email, data.github, data.blog].filter(Boolean).join('   ');
-    }
-</script>
 
 </html>
