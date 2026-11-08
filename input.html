@@ -410,10 +410,18 @@
 
     // --- 8. 하단 버튼 액션 ---
     document.getElementById("btnResetAll").addEventListener("click", () => {
-      if (confirm("작성 중인 모든 내용을 초기화하시겠습니까?")) {
-        localStorage.removeItem("portfolio_draft_data");
-        localStorage.removeItem("currentPortfolioDraft");
-        location.reload();
+      const isConfirm = confirm("작성 중인 모든 내용을 초기화하시겠습니까?");
+      if (isConfirm) {
+        const userInput = prompt("초기화하려면 입력창에 '초기화'라고 정확히 입력해주세요.\n(주의: 모든 데이터가 영구적으로 삭제됩니다.)");
+        
+        if (userInput === "초기화") {
+          localStorage.removeItem("portfolio_draft_data");
+          localStorage.removeItem("currentPortfolioDraft");
+          location.reload();
+          alert("초기화가 완료되었습니다.");
+        } else if (userInput !== null) {
+          alert("입력한 단어가 일치하지 않아 초기화가 취소되었습니다.");
+        }
       }
     });
 
