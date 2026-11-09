@@ -201,15 +201,34 @@
       const item = document.createElement("div");
       item.className = "dynamic-item project-item";
       item.style = "background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:15px; margin-bottom:12px; position:relative;";
+      
+      // 이미지가 있으면 배경으로 표시, 없으면 회색 바탕에 + 표시
+      const imgPreviewStyle = data.image 
+        ? `background-image: url(${data.image}); background-size: cover; background-position: center;`
+        : `background: #e2e8f0;`;
+      const imgPlaceholder = data.image ? '' : '<span style="font-size:24px; color:#94a3b8;">+</span>';
+
       item.innerHTML = `
         <button type="button" class="btn-item-del" style="position:absolute; top:10px; right:12px; background:none; border:none; color:#94a3b8; font-size:16px; cursor:pointer;" onclick="this.parentElement.remove(); autoSaveDraft();">✕</button>
-        <div style="margin-bottom:8px;">
-          <label style="font-size:12px; font-weight:600; color:#475569;">프로젝트명</label>
-          <input type="text" class="proj-title" placeholder="프로젝트 이름" value="${data.title || ''}" style="width:100%; padding:8px; border:1px solid #cbd5e1; border-radius:6px; margin-top:4px; box-sizing:border-box;">
-        </div>
-        <div style="margin-bottom:8px;">
-          <label style="font-size:12px; font-weight:600; color:#475569;">진행 기간</label>
-          <input type="text" class="proj-period" placeholder="2026.03 - 2026.06" value="${data.period || ''}" style="width:100%; padding:8px; border:1px solid #cbd5e1; border-radius:6px; margin-top:4px; box-sizing:border-box;">
+        
+        <div style="display: flex; gap: 15px; margin-bottom: 8px;">
+          <!-- 썸네일 업로드 영역 -->
+          <div class="proj-img-preview" style="width: 80px; height: 80px; border-radius: 8px; cursor: pointer; flex-shrink: 0; display: flex; align-items: center; justify-content: center; overflow: hidden; ${imgPreviewStyle}" title="클릭하여 프로젝트 사진 업로드">
+            ${imgPlaceholder}
+          </div>
+          <input type="file" class="proj-img-input" accept="image/*" style="display: none;">
+          <input type="hidden" class="proj-img-data" value="${data.image || ''}">
+          
+          <div style="flex-grow: 1;">
+            <div style="margin-bottom:8px;">
+              <label style="font-size:12px; font-weight:600; color:#475569;">프로젝트명</label>
+              <input type="text" class="proj-title" placeholder="프로젝트 이름" value="${data.title || ''}" style="width:100%; padding:8px; border:1px solid #cbd5e1; border-radius:6px; margin-top:4px; box-sizing:border-box;">
+            </div>
+            <div>
+              <label style="font-size:12px; font-weight:600; color:#475569;">진행 기간</label>
+              <input type="text" class="proj-period" placeholder="2026.03 - 2026.06" value="${data.period || ''}" style="width:100%; padding:8px; border:1px solid #cbd5e1; border-radius:6px; margin-top:4px; box-sizing:border-box;">
+            </div>
+          </div>
         </div>
         <div>
           <label style="font-size:12px; font-weight:600; color:#475569;">간단한 설명</label>
@@ -217,17 +236,39 @@
         </div>
       `;
 
-      item.querySelectorAll("input, textarea").forEach(el => {
+      // 썸네일 클릭 시 파일 업로드 창 띄우기
+      const imgPreviewEl = item.querySelector('.proj-img-preview');
+      const imgInputEl = item.querySelector('.proj-img-input');
+      const imgDataEl = item.querySelector('.proj-img-data');
+
+      imgPreviewEl.addEventListener('click', () => imgInputEl.click());
+
+      // 이미지 첨부 시 Base64로 변환하여 미리보기 띄우기 및 저장
+      imgInputEl.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = (event) => {
+            const base64Data = event.target.result;
+            imgDataEl.value = base64Data;
+            imgPreviewEl.style.backgroundImage = `url(${base64Data})`;
+            imgPreviewEl.style.backgroundSize = 'cover';
+            imgPreviewEl.style.backgroundPosition = 'center';
+            imgPreviewEl.style.backgroundColor = 'transparent';
+            imgPreviewEl.innerHTML = ''; // '+' 아이콘 제거
+            autoSaveDraft();
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+
+      // 텍스트 변경 시 자동 저장
+      item.querySelectorAll("input[type='text'], textarea").forEach(el => {
         el.addEventListener("input", autoSaveDraft);
       });
 
       projectContainer.appendChild(item);
     }
-
-    btnAddProject.addEventListener("click", () => {
-      createProjectItem();
-      autoSaveDraft();
-    });
 
 
     // --- 3. 자격증 동적 추가/삭제 ---
@@ -301,14 +342,19 @@
       const emailVal = document.getElementById("email").value.trim();
       const blogVal = document.getElementById("blog").value.trim();
 
+
       // 프로젝트 목록 추출
       const projects = [];
       document.querySelectorAll(".project-item").forEach(item => {
         const title = item.querySelector(".proj-title").value.trim();
         const period = item.querySelector(".proj-period").value.trim();
         const desc = item.querySelector(".proj-desc").value.trim();
-        if (title || period || desc) {
-          projects.push({ title, period, desc });
+        
+        const imgDataEl = item.querySelector(".proj-img-data");
+        const image = imgDataEl ? imgDataEl.value : ""; 
+        
+        if (title || period || desc || image) {
+          projects.push({ title, period, desc, image });
         }
       });
 

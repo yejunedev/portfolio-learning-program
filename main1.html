@@ -442,15 +442,24 @@
                 if (document.getElementById('projectList')) {
                     document.getElementById('projectList').innerHTML = (data.projects || [])
                         .filter(p => p && p.title)     
-                        .map(p => `
+                        .map(p => {
+                            // 이미지가 있으면 img 태그를, 없으면 기본 회색 박스를 만듭니다.
+                            const imgHTML = p.image 
+                                ? `<img src="${p.image}" alt="프로젝트 썸네일" style="width:100%; height:100%; object-fit:cover; border-radius:8px;">`
+                                : ``; 
+                            
+                            return `
                             <div class="project-card">
-                                <div class="project-thumbnail"></div>
+                                <div class="project-thumbnail" style="width: 70px; height: 70px; flex-shrink: 0; border-radius: 8px; background-color: #D9D9D9; overflow: hidden; display: flex; align-items: center; justify-content: center;">
+                                    ${imgHTML}
+                                </div>
                                 <div>
                                     <strong>${p.title}</strong><br>
                                     <span style="font-size:11px;color:#888;">${p.period || ''}</span><br>
                                     <span style="font-size:12px;">${p.desc || ''}</span>
                                 </div>
-                            </div>`)
+                            </div>`
+                        })
                         .join('');
                 }
 
