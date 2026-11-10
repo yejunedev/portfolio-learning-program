@@ -193,7 +193,7 @@
     });
 
 
-    // --- 2. 프로젝트 동적 추가/삭제 ---
+    // --- 2. 프로젝트 동적 추가/삭제 (사진 업로드 포함) ---
     const projectContainer = document.getElementById("projectContainer");
     const btnAddProject = document.getElementById("btnAddProject");
 
@@ -270,6 +270,11 @@
       projectContainer.appendChild(item);
     }
 
+    btnAddProject.addEventListener("click", () => {
+      createProjectItem();
+      autoSaveDraft();
+    });
+
 
     // --- 3. 자격증 동적 추가/삭제 ---
     const certContainer = document.getElementById("certContainer");
@@ -341,7 +346,6 @@
       const githubVal = document.getElementById("github").value.trim();
       const emailVal = document.getElementById("email").value.trim();
       const blogVal = document.getElementById("blog").value.trim();
-
 
       // 프로젝트 목록 추출
       const projects = [];
